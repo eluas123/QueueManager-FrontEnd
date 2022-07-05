@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import AppRoutes from './appRoutes';
 
 function App() {
-    return (
-<React.Fragment>
-    
-</React.Fragment>
-    );
+  return (
+    <div className="">
+      <AppRoutes/>
+    </div>
+  );
 }
 
 export default App;
