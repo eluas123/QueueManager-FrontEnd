@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm} from "react-hook-form"
 import { API_URL, doApiMethod, TOKEN_NAME } from '../services/apiService';
 
-export default function Login() {
+export default function AdminLogin() {
 
   const{register , handleSubmit ,  formState: { errors } } = useForm();
 
