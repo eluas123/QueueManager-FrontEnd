@@ -6,7 +6,6 @@ import Home from './comps/home'
 import Page404 from './comps/page404'
 
 export default function AppRoutes() {
-   
 
   return (
     <BrowserRouter>
