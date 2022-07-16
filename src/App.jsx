@@ -1,11 +1,12 @@
+import React from 'react';
 import './App.css';
 import AppRoutes from './appRoutes';
 
 function App() {
   return (
-    <div className="">
+    <React.Fragment>
       <AppRoutes/>
-    </div>
+      </React.Fragment>
   );
 }
 
