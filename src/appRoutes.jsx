@@ -13,21 +13,16 @@ import TypeOfService from './comps/typeOfService';
 import QueueTable from './comps/queueTable';
 import AdminHomePage from './admin_comps/adminHomePage';
 import Appoitments from './admin_comps/appoitments';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { AppContext } from './context/context';
 
 export default function AppRoutes() {
 
-   useEffect (() =>{
-   doApi();
-   },[])
-
-    const doApi = async() =>{
-      console.log("elias");
-    }
+   const [loading,setLoading]= useState(false);
 
   return (
     <BrowserRouter>
+    <AppContext.Provider value={{loading,setLoading}}>
     <Routes>
     {/*Route User*/}
     <Route path="/" element={<Home/>}/>
@@ -52,6 +47,7 @@ export default function AppRoutes() {
     </Routes>
     {/*TOAST MESSAGE*/}
     <ToastContainer position="top-left" theme="dark"/>
+    </AppContext.Provider>
     </BrowserRouter>
   )
 }

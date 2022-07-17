@@ -7,6 +7,7 @@ function QueueTable() {
 
     React.useEffect(() => {
         getJson('https://trial.mobiscroll.com/events/?vers=5', (events) => {
+            console.log(events);
             setEvents(events);
         }, 'jsonp');
     }, []);
