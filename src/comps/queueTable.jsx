@@ -26,8 +26,8 @@ function QueueTable() {
     }, []);
 
     return (
-        <div className='container-fluid bg-dark'>
-        <h1 className='text-white text-center'>Queue Manager</h1>
+        <div className='container-fluid'>
+        <h1 className='text-center mb-5'>Queue Manager</h1>
         <Eventcalendar
             theme="ios" 
             themeVariant="light"
