@@ -1,6 +1,8 @@
 import React from 'react'
 import {ToastContainer} from "react-toastify"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useState } from 'react';
+import { AppContext } from './context/context';
 import 'react-toastify/dist/ReactToastify.css';
 
 import About from './comps/about'
@@ -10,11 +12,10 @@ import SignUp from './comps/userCms/signUp'
 import AdminLogin from './admin_comps/adminLogin'
 import Login from './comps/userCms/login'
 import TypeOfService from './comps/typeOfService';
-import QueueTable from './comps/queueTable';
+import QueueTable from './admin_comps/queueTable';
 import AdminHomePage from './admin_comps/adminHomePage';
 import Appoitments from './admin_comps/appoitments';
-import { useState } from 'react';
-import { AppContext } from './context/context';
+import UserCalendar from './comps/userCalendar';
 
 export default function AppRoutes() {
 
@@ -30,10 +31,10 @@ export default function AppRoutes() {
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/service" element={<TypeOfService/>}/>
-    <Route path="/service/hair-men" element={<QueueTable/>}/>
-    <Route path="/service/hair-women" element={<QueueTable/>}/>
-    <Route path="/service/lack-gel" element={<QueueTable/>}/>
-    <Route path="/service/hair-fen" element={<QueueTable/>}/>
+    <Route path="/service/hair-men" element={<UserCalendar/>}/>
+    <Route path="/service/hair-women" element={<UserCalendar/>}/>
+    <Route path="/service/lack-gel" element={<UserCalendar/>}/>
+    <Route path="/service/hair-fen" element={<UserCalendar/>}/>
     
 
     <Route path="/*" element={<Page404/>}/>
