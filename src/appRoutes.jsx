@@ -16,6 +16,7 @@ import QueueTable from './admin_comps/queueTable';
 import AdminHomePage from './admin_comps/adminHomePage';
 import Appoitments from './admin_comps/appoitments';
 import UserCalendar from './comps/userCalendar';
+import EditHours from './admin_comps/editHours';
 
 export default function AppRoutes() {
 
@@ -44,6 +45,7 @@ export default function AppRoutes() {
     <Route path="/admin/about" element={<About/>}/>    
     <Route path="/admin/appoitments" element={<Appoitments/>}/>
     <Route path="/admin/appoitments/view-appoitments" element={<QueueTable/>}/>
+    <Route path="/admin/appoitments/edithours" element={<EditHours/>}/>
    
     </Routes>
     {/*TOAST MESSAGE*/}

@@ -5,23 +5,41 @@ import React, { useState } from 'react';
 
 const UserCalendar = () => {
 
+const showDate = new Date();
+  const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
+  
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
+
   const onPanelChange = (value, mode) => {
-    console.log(value.format('DD-MM-YYYY'), mode);
+    console.log(value.format('DD-M-YYYY'), mode);
   };
 
   const onSelect = (newValue) => {
     setValue(newValue);
     setSelectedValue(newValue);
-    console.log(selectedValue?.format('DD-MM-YYYY'));
+    console.log(selectedValue?.format('DD-M-YYYY'));
   };
+
+  
+
+  const check = () =>{
+  if(displayTodaysDate==selectedValue?.format('DD-M-YYYY')){
+    console.log("elias agever")
+  }
+else{
+  console.log("elias ygaroa");
+}
+  }
+
 
   return (
     <div className="container">
-       <Alert message={`You selected date: ${selectedValue?.format('DD-MM-YYYY')}`} />
-      <Calendar value={value} fullscreen={false} onSelect={onSelect} onPanelChange={onPanelChange} />
-      <h4 className='text-center mt-5'>Appointments available for the date {selectedValue?.format('DD-MM-YYYY')}</h4>
+       <Alert message={`You selected date: ${selectedValue?.format('DD-M-YYYY')}`} />
+       <button onClick={check}>X</button>
+      <Calendar  fullscreen={false} onSelect={onSelect} onPanelChange={onPanelChange} />
+      <h4 className='text-center mt-5'>Appointments available for the date {selectedValue?.format('DD-M-YYYY')}</h4>
+      <h4 className='text-center mt-5'>Appointments available for the date {displayTodaysDate}</h4>
       <hr></hr>
     </div>
   );
