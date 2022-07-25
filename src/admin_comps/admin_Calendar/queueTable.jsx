@@ -3,7 +3,7 @@ import { Alert,Calendar } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 
-const UserCalendar = () => {
+const QueueTable = () => {
 
 const showDate = new Date();
   const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
@@ -39,10 +39,9 @@ else{
        <button onClick={check}>X</button>
       <Calendar  fullscreen={false} onSelect={onSelect} onPanelChange={onPanelChange} />
       <h4 className='text-center mt-5'>Appointments available for the date {selectedValue?.format('DD-M-YYYY')}</h4>
-      <h4 className='text-center mt-5'>Appointments available for the date {displayTodaysDate}</h4>
       <hr></hr>
     </div>
   );
 };
 
-export default UserCalendar;
+export default QueueTable;

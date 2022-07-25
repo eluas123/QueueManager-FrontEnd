@@ -12,11 +12,11 @@ import SignUp from './comps/userCms/signUp'
 import AdminLogin from './admin_comps/adminLogin'
 import Login from './comps/userCms/login'
 import TypeOfService from './comps/typeOfService';
-import QueueTable from './admin_comps/queueTable';
 import AdminHomePage from './admin_comps/adminHomePage';
 import Appoitments from './admin_comps/appoitments';
-import UserCalendar from './comps/userCalendar';
 import EditHours from './admin_comps/editHours';
+import UserCalendar from './comps/Calendar/userCalendar';
+import QueueTable from './admin_comps/admin_Calendar/queueTable';
 
 export default function AppRoutes() {
 
