@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { useParams } from 'react-router-dom'
-import { API_URL, doApiGet } from '../../services/apiService';
+import React from 'react'
 
-export default function AdminListAppoint() {
 
-  const [ar,setAr] = useState({});
-  const params = useParams();
-
-   useEffect(() =>{
-   doApi();
-   },[])
-
-  const doApi = async() =>{
-    let url = API_URL+"/appointments/Appointments-available/"+params.Date;
-    let resp = await doApiGet(url);
-    console.log(resp.data);
-  }
+export default function AdminListAppoint(props) {
+let item = props.item;
 
   return (
     <div className='container'>
-      <h1 className='text-center'>Appointments: </h1>
-
+    <div className='d-flex justify-content-evenly border mt-5 mb-5'>
+   <div>Name: {item.userID}</div>
+   <div>Service: {item.serviceID}</div>
+   <div>Date: {item.Date}</div>
+   <div>time: {item.time}</div>
+</div>
     </div>
   )
 }

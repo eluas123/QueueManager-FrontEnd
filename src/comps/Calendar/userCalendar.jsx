@@ -34,6 +34,7 @@ else{
 
   return (
     <div className="container">
+      <h1>User Calendar</h1>
        <Alert message={`You selected date: ${selectedValue?.format('DD-M-YYYY')}`} />
        <button onClick={check}>X</button>
       <Calendar  fullscreen={false} onSelect={onSelect} onPanelChange={onPanelChange} />

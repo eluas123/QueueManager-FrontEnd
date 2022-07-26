@@ -1,10 +1,13 @@
+import { toast } from '@mobiscroll/react';
 import React from 'react'
 import {useForm} from "react-hook-form"
+import { useNavigate } from 'react-router-dom';
 import { API_URL, doApiMethod, TOKEN_NAME } from '../services/apiService';
 
 export default function AdminLogin() {
 
   const{register , handleSubmit ,  formState: { errors } } = useForm();
+  const nav = useNavigate();
 
   const onSub = (_bodyData) =>{
     console.log(_bodyData);
@@ -19,11 +22,12 @@ export default function AdminLogin() {
 
       if(resp.data.token){
         localStorage.setItem(TOKEN_NAME, resp.data.token);
+        nav("/admin");
       }
     }
     catch(err){
     console.log(err.response);
-    alert("user or password wrong")
+    toast.error("user or password wrong")
     }
   }
 

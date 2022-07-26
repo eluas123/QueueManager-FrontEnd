@@ -2,18 +2,34 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Alert,Calendar } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { API_URL, doApiGet } from '../../services/apiService';
+import { useEffect } from 'react';
+import AdminListAppoint from './adminListAppoint';
+
 
 const QueueTable = () => {
 
 const showDate = new Date();
   const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
   
+  const [ar,setAr] = useState([]);
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
 
-  const onPanelChange = (value, mode) => {
-    console.log(value.format('DD-M-YYYY'), mode);
-  };
+  useEffect(() =>{
+    doApi();
+   },[selectedValue])
+
+
+   const doApi = async() =>{
+    let url = API_URL+`/appointments/list-appointments/${selectedValue?.format('DD-M-YYYY')}`;
+    let resp = await doApiGet(url);
+    console.log(resp.data);
+    setAr(resp.data);
+    if(resp.data.length == 0){
+     console.log("There is no appointments today")
+    }
+  }
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -21,25 +37,19 @@ const showDate = new Date();
     console.log(selectedValue?.format('DD-M-YYYY'));
   };
 
-  
-
-  const check = () =>{
-  if(displayTodaysDate==selectedValue?.format('DD-M-YYYY')){
-    console.log("elias agever")
-  }
-else{
-  console.log("elias ygaroa");
-}
-  }
-
 
   return (
     <div className="container">
+      <h1>Today is: {displayTodaysDate}</h1>
        <Alert message={`You selected date: ${selectedValue?.format('DD-M-YYYY')}`} />
-       <button onClick={check}>X</button>
-      <Calendar  fullscreen={false} onSelect={onSelect} onPanelChange={onPanelChange} />
-      <h4 className='text-center mt-5'>Appointments available for the date {selectedValue?.format('DD-M-YYYY')}</h4>
+      <Calendar value={value} fullscreen={false} onSelect={onSelect} />
       <hr></hr>
+      <h1 className='text-center'>All Appointments: </h1>
+       {ar.map(item => {
+        return (
+          <AdminListAppoint item={item}/> 
+        )
+       })}
     </div>
   );
 };
