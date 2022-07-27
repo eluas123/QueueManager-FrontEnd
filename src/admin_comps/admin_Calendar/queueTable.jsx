@@ -5,12 +5,13 @@ import React, { useState } from 'react';
 import { API_URL, doApiGet } from '../../services/apiService';
 import { useEffect } from 'react';
 import AdminListAppoint from './adminListAppoint';
+import { useContext } from 'react';
+import { AppContext } from '../../context/context';
 
 
 const QueueTable = () => {
 
-const showDate = new Date();
-  const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
+const {displayTodaysDate} = useContext(AppContext);
   
   const [ar,setAr] = useState([]);
   const [value, setValue] = useState(moment());
@@ -34,7 +35,7 @@ const showDate = new Date();
   const onSelect = (newValue) => {
     setValue(newValue);
     setSelectedValue(newValue);
-    console.log(selectedValue?.format('DD-M-YYYY'));
+    console.log(selectedValue?.format('DD-M-YYYY'));    
   };
 
 

@@ -20,11 +20,13 @@ import QueueTable from './admin_comps/admin_Calendar/queueTable';
 
 export default function AppRoutes() {
 
+  const showDate = new Date();
+  const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
    const [loading,setLoading]= useState(false);
 
   return (
     <BrowserRouter>
-    <AppContext.Provider value={{loading,setLoading}}>
+    <AppContext.Provider value={{loading,setLoading,displayTodaysDate}}>
     <Routes>
     {/*Route User*/}
     <Route path="/" element={<Home/>}/>
