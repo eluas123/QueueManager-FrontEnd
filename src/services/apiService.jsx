@@ -4,6 +4,7 @@ import axios from "axios";
 export const API_URL = "http://localhost:3006";
 export const TOKEN_NAME = "Queue_token";
 
+///FOR GET INFO
 export const doApiGet = async(_url) =>{
 try{
 let resp = await axios.get(_url, {
@@ -19,7 +20,7 @@ catch(err){
 }
 }
 
-///For POST,PUT
+///For POST,PUT,DELETE
 export const doApiMethod = async(_url,_method,_body = {}) =>{
     try{
         let resp = await axios({

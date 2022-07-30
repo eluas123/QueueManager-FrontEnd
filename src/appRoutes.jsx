@@ -13,10 +13,14 @@ import AdminLogin from './admin_comps/adminLogin'
 import Login from './comps/userCms/login'
 import TypeOfService from './comps/typeOfService';
 import AdminHomePage from './admin_comps/adminHomePage';
-import Appoitments from './admin_comps/appoitments';
-import EditHours from './admin_comps/editHours';
 import UserCalendar from './comps/Calendar/userCalendar';
 import QueueTable from './admin_comps/admin_Calendar/queueTable';
+import TypeServicesList from './admin_comps/typeServicesList';
+import EditTypeServices from './admin_comps/editTypeServices';
+import AddTypeService from './admin_comps/addTypeService';
+import ListWorkHours from './admin_comps/workHours/listWorkHours';
+import AddWorkHours from './admin_comps/workHours/addWorkHours';
+import EditWorkHours from './admin_comps/workHours/editWorkHours';
 
 export default function AppRoutes() {
 
@@ -44,11 +48,13 @@ export default function AppRoutes() {
     {/*Route Admin*/}
     <Route path="/admin" element={<AdminHomePage/>}/>
     <Route path="/admin/login" element={<AdminLogin/>}/>    
-    <Route path="/admin/about" element={<About/>}/>    
-    <Route path="/admin/appoitments" element={<Appoitments/>}/>
-    <Route path="/admin/appoitments/view-appoitments" element={<QueueTable/>}/>
-    <Route path="/admin/appoitments/edithours" element={<EditHours/>}/>
-   
+    <Route path="/admin/appoitments" element={<QueueTable/>}/>
+    <Route path="/admin/listServices" element={<TypeServicesList/>}/>
+    <Route path="/admin/editService/:idService" element={<EditTypeServices/>}/>
+    <Route path="/admin/addService" element={<AddTypeService/>}/>
+    <Route path="/admin/listWorkHours" element={<ListWorkHours/>}/>
+    <Route path="/admin/addWorkHours" element={<AddWorkHours/>}/>
+    <Route path="/admin/editWorkHours" element={<EditWorkHours/>}/>
     </Routes>
     {/*TOAST MESSAGE*/}
     <ToastContainer position="top-left" theme="dark"/>
