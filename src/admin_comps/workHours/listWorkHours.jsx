@@ -26,7 +26,6 @@ export default function ListWorkHours() {
         try{
             let resp = await doApiMethod(url,"DELETE");
             if(resp.data.deletedCount == 1){
-                toast.success("Deleted")
                 doApi();
             }
         }
@@ -63,7 +62,7 @@ export default function ListWorkHours() {
                                 window.confirm("Are you sure you want to delete") &&
                                 onDelClick(item._id);
                             }} className='btn bagde bg-danger me-2'>Del</button>
-                            <Link to={"/admin/editWorkHours"+item._id} className='btn bagde bg-info me-2'>Edit</Link> 
+                            <Link to={"/admin/editworkHours/"+item._id} className='btn bagde bg-info me-2'>Edit</Link> 
                         </td>
                     </tr>
                 )

@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import {useForm} from "react-hook-form"
 import { API_URL, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { Alert, Calendar } from 'antd';
+import moment from 'moment';
+import { useRef } from 'react';
 
 
-export default function AddWorkHours() {
+export default function AddWorkHours(props) {
+
+  const [value, setValue] = useState(moment());
+  const [selectedValue, setSelectedValue] = useState(moment());
+  const dateSelect = selectedValue?.format('DD-M-YYYY');
 
   const nav = useNavigate();
   let {register, handleSubmit, formState: {errors}} = useForm();
+  let input = useRef();
 
   const onSub = (_dataBody) =>{
+    _dataBody.date = dateSelect;
     console.log(_dataBody);
     doApiAdd(_dataBody);
   }
+
 
   const doApiAdd = async(_dataBody) =>{
     let url = API_URL+"/workHours";
@@ -31,10 +42,17 @@ export default function AddWorkHours() {
     }
   }
   
+  const onSelect = (newValue) => {
+    setValue(newValue);
+    setSelectedValue(newValue);
+  };
+  
+
   return (
     <div className='container'>
     <AdminAuthComp/>
     <h1>update new work hours</h1>
+    <div className='d-flex'>
     <form onSubmit={handleSubmit(onSub)} className='col-md-6 p-3 shadow'>
      <label>Start</label>
      <input {...register('start',{required:true, minLength:2})} type='time' defaultValue={"08:00"} className="form-control"/>
@@ -45,10 +63,12 @@ export default function AddWorkHours() {
      {errors.end && <small className='text-danger d-block'>Enter valid time</small>}
 
      <label>Date</label>
-     <input {...register('date',{required:true, minLength:2})} type="date" className='form-control'/>
-     {errors.date && <small className='text-danger d-block'>Enter valid date</small>}
+    <div className='form-control'>{dateSelect}</div>
      <button className='btn btn-success mt-3'>update new work hours</button>
     </form>
+    
+      <Calendar value={value} onSelect={onSelect} fullscreen={false} />
+    </div>
     </div>
   )
 }

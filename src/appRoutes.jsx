@@ -54,7 +54,7 @@ export default function AppRoutes() {
     <Route path="/admin/addService" element={<AddTypeService/>}/>
     <Route path="/admin/listWorkHours" element={<ListWorkHours/>}/>
     <Route path="/admin/addWorkHours" element={<AddWorkHours/>}/>
-    <Route path="/admin/editWorkHours" element={<EditWorkHours/>}/>
+    <Route path="/admin/editWorkHours/:idWorkHours" element={<EditWorkHours/>}/>
     </Routes>
     {/*TOAST MESSAGE*/}
     <ToastContainer position="top-left" theme="dark"/>

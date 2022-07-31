@@ -22,6 +22,7 @@ export default function EditTypeServices() {
         let url = API_URL+"/typeServices/infoService/"+params.idService;
         let resp = await doApiGet(url);
         setServ(resp.data);
+        console.log(resp.data);
     }
 
     const onSub = (_dataBody) =>{
