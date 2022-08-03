@@ -21,6 +21,7 @@ import AddTypeService from './admin_comps/addTypeService';
 import ListWorkHours from './admin_comps/workHours/listWorkHours';
 import AddWorkHours from './admin_comps/workHours/addWorkHours';
 import EditWorkHours from './admin_comps/workHours/editWorkHours';
+import UserList from './admin_comps/users/userList';
 
 export default function AppRoutes() {
 
@@ -49,6 +50,7 @@ export default function AppRoutes() {
     <Route path="/admin" element={<AdminHomePage/>}/>
     <Route path="/admin/login" element={<AdminLogin/>}/>    
     <Route path="/admin/appoitments" element={<QueueTable/>}/>
+    <Route path="/admin/ListUsers" element={<UserList/>}/>
     <Route path="/admin/listServices" element={<TypeServicesList/>}/>
     <Route path="/admin/editService/:idService" element={<EditTypeServices/>}/>
     <Route path="/admin/addService" element={<AddTypeService/>}/>

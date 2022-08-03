@@ -6,7 +6,7 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import { Link } from 'react-router-dom';
 
-export default function ListWorkHours() {
+export default function ListWorkHours(props) {
     
     const [ar,setAr] = useState([]);
 
@@ -40,20 +40,21 @@ export default function ListWorkHours() {
      <AdminAuthComp/>
      <h2>List of workHours you updated</h2>
      <Link to={"/admin/addWorkHours"} className='btn btn-success'>Update work hours</Link>
-     <table className='table table-striped table-hover'>
-        <thead>
+     <table className='table table-striped table-hover mt-3'>
+        <thead className='bg-dark text-white'>
             <tr>
                 <th>#</th>
                 <th>Start</th>
                 <th>End</th>
                 <th>Date</th>
+                <th>Del/Edit</th>
             </tr>
         </thead>
         <tbody>
             {ar.map((item, i) =>{
                 return(
                     <tr key={item._id}>
-                        <td>{i+1}</td>
+                        <td className='numbers'>{i+1}</td>
                         <td>{item.start}</td>
                         <td>{item.end}</td>
                         <td>{item.date}</td>
