@@ -1,0 +1,25 @@
+.Service .box {
+    background: #091442;
+    min-height: 200px;
+    border: 1px solid black;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    transition: 800ms;
+    cursor: pointer;
+}
+
+.Service .box:hover {
+    transform: scale(0.9, 0.9);
+}
+
+.Service .box h3 {
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    text-align: center;
+    color: white;
+    display: flex;
+    font-size: 22px;
+    font-weight: 900;
+}
