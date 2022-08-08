@@ -1,7 +1,8 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { Calendar } from 'antd';
+import { Button, Calendar } from 'antd';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
+import '../../css/appointments.css';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -11,10 +12,12 @@ import { useParams } from 'react-router-dom';
 export default function Appointments() {
 
 const {displayTodaysDate} = useContext(AppContext);
-const [ar,setAr] = useState({});
+let [ar,setAr] = useState({});
+let [start,setStart] = useState({});
+let [srv,setSrv] = useState({});
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
-  const DateSelect = selectedValue?.format('DD-M-YYYY');
+  let DateSelect = selectedValue?.format('DD-M-YYYY');
 
   let params = useParams();
 
@@ -28,17 +31,38 @@ const [ar,setAr] = useState({});
   },[]);
 
    const doApi = async() =>{
-    let urlService = API_URL+"/typeServices/infoService/"+params.id;
+    let urlService = API_URL+"/typeServices/infoService/"+params.idCategory;
+    console.log("urlService",urlService);
     let urlWorkHours = API_URL+"/workHours/infoworkHours/"+DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
     console.log("service ",respService.data);
-    console.log("workhours ",respWorkHours.data.end - respWorkHours.data.start);
-    let distance = respService.data.price + respService.data.lengthService
-    console.log(distance)
+    setSrv(respService.data.lengthService);
+    console.log("workhours ",respWorkHours.data.start);
+    setStart(respWorkHours.data.start);
+    console.log("workhours ",respWorkHours.data.end);
+    Number(respWorkHours.data.end);
+    Number(respWorkHours.data.start);
+    let distance = (respWorkHours.data.end.substring(0,2)) - (respWorkHours.data.start.substring(0,2));
+    console.log("distance",distance);
     setAr(distance)
    }
 
+   console.log("srv",srv);
+   console.log("start",start)
+
+    const Appointment = () =>{
+      let array = [];
+      let dist = (ar*60)/srv;
+      for (let i = 0; i < dist; i++) {
+        array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
+        start = array[i];
+   }
+         return array.map((val) =>{
+          return <Button key={val} onClick={()=>{
+          }}>{val}</Button>
+         })
+    }
 
   return (
     <div className='container-fluid'>
@@ -48,8 +72,8 @@ const [ar,setAr] = useState({});
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>
-        <div className='row'>
-          {ar.map}
+        <div className='box appointments'>
+          {Appointment()}
         </div>
     </div>
     </div>
