@@ -57,15 +57,15 @@ export default function EditWorkHours() {
       <form onSubmit={handleSubmit(onSub)} className='col-md-6 p-3 shadow'>
       <label>start</label>
       <label>Start</label>
-     <input {...register('start',{required:true, minLength:2})} type='time' defaultValue={wrk.start} className="form-control"/>
+     <input {...register('start',{minLength:2})} type='time' defaultValue={wrk.start} className="form-control"/>
      {errors.start && <small className='text-danger d-block'>Enter valid time</small>}
 
      <label>End</label>
-     <input {...register('end',{required:true, minLength:2})} type='time' defaultValue={wrk.end} className="form-control"/>
+     <input {...register('end',{minLength:2})} type='time' defaultValue={wrk.end} className="form-control"/>
      {errors.end && <small className='text-danger d-block'>Enter valid time</small>}
 
      <label>Date</label>
-     <input {...register('date',{required:true, minLength:2})} type="text" className='form-control'/>
+     <input {...register('date',{minLength:2})} type="text" className='form-control'/>
      {errors.date && <small className='text-danger d-block'></small>}
      <button className='btn btn-success mt-3'>update new work hours</button>
       </form>

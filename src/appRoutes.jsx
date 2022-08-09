@@ -39,7 +39,7 @@ export default function AppRoutes() {
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/service" element={<CategoriesList/>}/>    
-    <Route path="/appointments/:idCategory" element={<Appointments/>}/>    
+    <Route path="/appointments/:idService" element={<Appointments/>}/>    
 
     <Route path="/*" element={<Page404/>}/>
     {/*Route Admin*/}

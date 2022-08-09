@@ -27,13 +27,14 @@ let [srv,setSrv] = useState({});
   };
 
   useEffect(() =>{
-     doApi();
-  },[]);
+    doApi();
+ },[]);
 
    const doApi = async() =>{
-    let urlService = API_URL+"/typeServices/infoService/"+params.idCategory;
+     let urlService = API_URL+"/typeServices/infoService/"+params.idService;
+     console.log("asd",params.idService)
     console.log("urlService",urlService);
-    let urlWorkHours = API_URL+"/workHours/infoworkHours/"+DateSelect;
+    let urlWorkHours = API_URL+"/workHours/infoworkHours/getID/"+DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
     console.log("service ",respService.data);
@@ -59,8 +60,7 @@ let [srv,setSrv] = useState({});
         start = array[i];
    }
          return array.map((val) =>{
-          return <Button key={val} onClick={()=>{
-          }}>{val}</Button>
+          return <Button key={val}>{val}</Button>
          })
     }
 

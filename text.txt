@@ -1,1 +1,22 @@
 https://demo.mobiscroll.com/react/eventcalendar/mobile-month-view#
+
+
+
+
+    const selectWorkHours =()=>{
+     for (let i = 0; i < workHours.length; i++) {
+     if(DateSelect == workHours[i].date){
+        setSelectedWorkHours(workHours[i]);
+        // console.log("selected work hours",workHours[i]);
+        return
+      }
+      setSelectedWorkHours(workHours[workHours.length-1]);
+      // console.log("selected work hoursby default",workHours[workHours.length-1]);
+     }
+    }
+
+      const onSelect = (newValue) => {
+    setValue(newValue);
+    setSelectedValue(newValue);
+    selectWorkHours();
+  };
