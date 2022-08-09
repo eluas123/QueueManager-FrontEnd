@@ -1,4 +1,5 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { toast } from 'react-toastify';
 import { Button, Calendar } from 'antd';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
@@ -6,8 +7,8 @@ import '../../css/appointments.css';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { API_URL, doApiGet } from '../../services/apiService';
-import { useParams } from 'react-router-dom';
+import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function Appointments() {
 
@@ -20,6 +21,7 @@ let [srv,setSrv] = useState({});
   let DateSelect = selectedValue?.format('DD-M-YYYY');
 
   let params = useParams();
+  const nav = useNavigate();
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -32,8 +34,6 @@ let [srv,setSrv] = useState({});
 
    const doApi = async() =>{
      let urlService = API_URL+"/typeServices/infoService/"+params.idService;
-     console.log("asd",params.idService)
-    console.log("urlService",urlService);
     let urlWorkHours = API_URL+"/workHours/infoworkHours/getID/"+DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
@@ -49,8 +49,27 @@ let [srv,setSrv] = useState({});
     setAr(distance)
    }
 
-   console.log("srv",srv);
-   console.log("start",start)
+   const doApiPOST = async(time) =>{
+    let url = API_URL+"/appointments";
+    let data = {
+      time: time,
+      idService: params.idService,
+      dateselect: DateSelect
+    }
+    console.log("data",data);
+    try{
+    let resp = await doApiMethod(url,"POST",data);
+    console.log(resp.headers._id);
+    if(resp.data._id){
+    toast.success("your appointment succeffuly");
+    doApi();
+    }
+  }
+    catch(err){
+      console.log(err.response);
+      toast.error("There erorr try again later");
+    }
+  }
 
     const Appointment = () =>{
       let array = [];
@@ -60,13 +79,16 @@ let [srv,setSrv] = useState({});
         start = array[i];
    }
          return array.map((val) =>{
-          return <Button key={val}>{val}</Button>
+          return <Button onClick={()=>{
+            window.confirm("Are you sure you want to add this appointment") &&
+            doApiPOST(val);
+          }} key={val}>{val}</Button>
          })
     }
 
   return (
     <div className='container-fluid'>
-    <div className='container'>
+    <div className='container'> 
         <h1>Select the day you wanted</h1>
         <h4>Today is: {displayTodaysDate}</h4>
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
