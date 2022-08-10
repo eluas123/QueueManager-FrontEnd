@@ -24,14 +24,18 @@ import CategoriesList from './comps/categories/categoriesList';
 import Appointments from './comps/appointments/appointments';
 
 export default function AppRoutes() {
-
+  const [userInfo,setUserInfo] =useState({})
   const showDate = new Date();
   const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
-   const [loading,setLoading]= useState(false);
+
+
 
   return (
     <BrowserRouter>
-    <AppContext.Provider value={{loading,setLoading,displayTodaysDate}}>
+    <AppContext.Provider value={{
+      displayTodaysDate,
+      setUserInfo,userInfo
+      }}>
     <Routes>
     {/*Route User*/}
     <Route path="/" element={<Home/>}/>

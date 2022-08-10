@@ -40,7 +40,7 @@ let [nameService,setNameService] = useState({});
     // console.log("service ",respService.data);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
-    // console.log("workhours ",respWorkHours.data.start);
+    // console.log("workhours ",respWorkHours.data.start); 
     setStart(respWorkHours.data.start);
     // console.log("workhours ",respWorkHours.data.end);
     Number(respWorkHours.data.end);
@@ -55,7 +55,8 @@ let [nameService,setNameService] = useState({});
     let data = {
       time: time,
       serviceID: nameService,
-      Date: DateSelect
+      Date: DateSelect,
+      userID:(JSON.parse(localStorage['userInfo'])).name
     }
     console.log("data",data);
     try{

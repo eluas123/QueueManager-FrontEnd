@@ -1,7 +1,7 @@
 import axios from "axios";
 
 ///CHANGE API URL BEFORE PRODUCTION
-export const API_URL = "http://localhost:3006";
+export const API_URL = "http://localhost:3010";
 export const TOKEN_NAME = "Queue_token";
 
 ///FOR GET INFO

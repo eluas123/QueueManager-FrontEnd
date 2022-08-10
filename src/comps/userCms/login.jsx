@@ -1,14 +1,16 @@
 import React from 'react'
+import { useContext } from 'react';
 import {useForm} from "react-hook-form"
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { API_URL, doApiMethod } from '../../services/apiService';
+import { AppContext } from '../../context/context';
+import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
 
 export default function SignUp() {
 
     const nav = useNavigate();
     const{register , handleSubmit , formState: { errors } } = useForm();
-
+    const {setUserInfo,userInfo} = useContext(AppContext)
     const onSub = (_dataBody) =>{
       console.log(_dataBody);
       doApi(_dataBody);
@@ -18,10 +20,15 @@ export default function SignUp() {
         let url = API_URL+"/users/login";
         try{
         let resp = await doApiMethod(url,"POST",_dataBody);
+       
         if(resp.data.token){
+          localStorage.setItem(TOKEN_NAME,resp.data.token)
             toast.success("You logged in");
+            setUserInfo(resp.data.user)
+            localStorage.setItem('userInfo',JSON.stringify(userInfo))
             nav("/");
         }
+    
         else{
             toast.error("There is problem come back later");
         }
