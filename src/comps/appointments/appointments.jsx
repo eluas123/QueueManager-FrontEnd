@@ -16,12 +16,12 @@ const {displayTodaysDate} = useContext(AppContext);
 let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
+let [nameService,setNameService] = useState({});
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
   let DateSelect = selectedValue?.format('DD-M-YYYY');
 
   let params = useParams();
-  const nav = useNavigate();
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -37,15 +37,16 @@ let [srv,setSrv] = useState({});
     let urlWorkHours = API_URL+"/workHours/infoworkHours/getID/"+DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
-    console.log("service ",respService.data);
+    // console.log("service ",respService.data);
     setSrv(respService.data.lengthService);
-    console.log("workhours ",respWorkHours.data.start);
+    setNameService(respService.data.name);
+    // console.log("workhours ",respWorkHours.data.start);
     setStart(respWorkHours.data.start);
-    console.log("workhours ",respWorkHours.data.end);
+    // console.log("workhours ",respWorkHours.data.end);
     Number(respWorkHours.data.end);
     Number(respWorkHours.data.start);
     let distance = (respWorkHours.data.end.substring(0,2)) - (respWorkHours.data.start.substring(0,2));
-    console.log("distance",distance);
+    // console.log("distance",distance);
     setAr(distance)
    }
 
@@ -53,13 +54,13 @@ let [srv,setSrv] = useState({});
     let url = API_URL+"/appointments";
     let data = {
       time: time,
-      idService: params.idService,
-      dateselect: DateSelect
+      serviceID: nameService,
+      Date: DateSelect
     }
     console.log("data",data);
     try{
     let resp = await doApiMethod(url,"POST",data);
-    console.log(resp.headers._id);
+    console.log(resp.data);
     if(resp.data._id){
     toast.success("your appointment succeffuly");
     doApi();
