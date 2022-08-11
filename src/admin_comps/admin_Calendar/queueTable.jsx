@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import AdminListAppoint from './adminListAppoint';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
+import AdminAuthComp from '../adminAuthComp';
 
 
 const QueueTable = () => {
@@ -41,6 +42,7 @@ const {displayTodaysDate} = useContext(AppContext);
 
   return (
     <div className="container">
+      <AdminAuthComp/>
       <h1>Today is: {displayTodaysDate}</h1>
        <Alert message={`You selected date: ${selectedValue?.format('DD-M-YYYY')}`} />
       <Calendar value={value} fullscreen={false} onSelect={onSelect} />

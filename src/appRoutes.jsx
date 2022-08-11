@@ -13,15 +13,15 @@ import AdminLogin from './admin_comps/adminLogin'
 import Login from './comps/userCms/login'
 import AdminHomePage from './admin_comps/adminHomePage';
 import QueueTable from './admin_comps/admin_Calendar/queueTable';
-import TypeServicesList from './admin_comps/typeServicesList';
-import EditTypeServices from './admin_comps/editTypeServices';
-import AddTypeService from './admin_comps/addTypeService';
 import ListWorkHours from './admin_comps/workHours/listWorkHours';
 import AddWorkHours from './admin_comps/workHours/addWorkHours';
 import EditWorkHours from './admin_comps/workHours/editWorkHours';
 import UserList from './admin_comps/users/userList';
 import CategoriesList from './comps/categories/categoriesList';
 import Appointments from './comps/appointments/appointments';
+import TypeServicesList from './admin_comps/typeServices/typeServicesList';
+import EditTypeServices from './admin_comps/typeServices/editTypeServices';
+import AddTypeService from './admin_comps/typeServices/addTypeService';
 
 export default function AppRoutes() {
   const [userInfo,setUserInfo] =useState({})

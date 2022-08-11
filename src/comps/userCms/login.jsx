@@ -1,10 +1,11 @@
 import React from 'react'
 import { useContext } from 'react';
 import {useForm} from "react-hook-form"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AppContext } from '../../context/context';
-import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
+import { API_URL, doApiMethod, TOKEN_NAME } from '../../services/apiService';
+import '..//..//css/login.css';
 
 export default function SignUp() {
 
@@ -38,18 +39,27 @@ export default function SignUp() {
        }
     }
 
-  return (
-        <div className='container'>
-      <h1 className='display-5 text-center'>Log in</h1>
-      <form onSubmit={handleSubmit(onSub)} className="col-md-6 p-3 shadow mx-auto">
-        <label>Phone:</label>
-        <input {...register("phone",{required:true, minLength:10,maxLength:10})} type="text" className="form-control"/>
-        {errors.phone && <small className='d-block text-danger'>*Enter valid Phone Number </small>}
-        <label>Password:</label>
-        <input {...register("password", {required:true,minLength:3})}type="password" className="form-control"/>
-        {errors.password && <small className='d-block text-danger'>*Enter valid Password (min 3 chars)</small>}
-        <button className='btn btn-info mt-3'>Log in</button>
-      </form>
-    </div>
+  return ( 
+<div className='container-fluid signUpFluid d-md-flex justify-content-between'>
+<img className='img1' src=''/>
+  <div className='right d-flex align-items-center p-md-5 '>
+    <form onSubmit={handleSubmit(onSub)} className="box col-md-6">
+    <h1 className='display-5 text-dark me-2'>התחברות:</h1>
+      {errors.phone && <small className='d-block text-danger'>*מספר לא תקין </small>}
+      <input placeholder="*מספר טלפון" {...register("phone", { required: true, minLength: 10, maxLength: 10 })} type="text" className="form-control mb-4 border-dark me-2" />
+      {errors.password && <small className='d-block text-danger'>*נא להכניס סיסמה תקינה (לפחות 3 תווים)</small>}
+      <input placeholder="*סיסמה" {...register("password", { required: true, minLength: 3 })} type="password" className="form-control mb-4 border-dark me-2" />
+      <button className='btn bb me-2'>התחברות</button>
+      <p className='text-dark pt-2 fs-5 me-2'>עדיין לא נרשמת? <Link className='text-dark border-dark border-bottom' to={'/signUp'}>הרשמה</Link></p>
+
+    </form>
+  </div>
+  <div className='d-flex  align-items-center'>
+  <div className='left text-center'>
+    <img className='img2' src=''/>
+    <h2 className='h2SignUp col-md-8 text-center text-white'>ברוכים השבים למרפאת השיניים</h2>
+  </div>
+  </div>
+</div>
   )
 }

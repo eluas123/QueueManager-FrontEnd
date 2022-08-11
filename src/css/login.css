@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+.signUpFluid {
+    min-height: 610px;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.623) 50%, white 50%);
+}
+
+.box {
+    width: 500px;
+}
+
+.bb {
+    background: rgba(0, 0, 255, 0.623);
+    width: inherit;
+}
+
+.img1 {
+    display: none;
+}
+
+.img2 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: 165px;
+    margin-bottom: 20px;
+}
+
+@media (max-width:768px) {
+    .signUpFluid {
+        /* background: linear-gradient(to top, rgba(0, 0, 255, 0.623) 0%,white 100%); */
+        background: white;
+        /* background:rgba(0, 0, 255, 0.623) ; */
+        padding-top: 30px;
+    }
+    .left {
+        margin-top: 0px;
+        margin-right: 0px;
+        ;
+    }
+    .img1 {
+        display: block;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-right: 90px;
+        margin-bottom: 50px;
+    }
+    .img2 {
+        display: none;
+    }
+    .h2SignUp {
+        display: none;
+    }
+    .box {
+        width: 350px;
+    }
+}

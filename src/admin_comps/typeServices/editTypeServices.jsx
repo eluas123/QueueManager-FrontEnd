@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { API_URL, doApiGet, doApiMethod } from '../services/apiService';
-import AdminAuthComp from './adminAuthComp';
+import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import {useForm} from "react-hook-form"
+import AdminAuthComp from '../adminAuthComp';
 
 export default function EditTypeServices() {
    

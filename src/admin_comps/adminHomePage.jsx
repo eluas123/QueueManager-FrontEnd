@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import AdminAuthComp from './adminAuthComp'
 
 export default function AdminHomePage() {
   return (
     <div className='container-fluid bg-dark'>
+      <AdminAuthComp/>
              <Link className='btn btn-success' to={'appoitments'}>appoitments</Link>
              <Link className='btn btn-success' to={'listServices'}>typeServices</Link>
              <Link className='btn btn-success' to={'listWorkHours'}>Work Hours</Link>

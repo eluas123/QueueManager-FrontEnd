@@ -2,9 +2,9 @@ import React from 'react'
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useState } from 'react'
-import { API_URL, doApiGet, doApiMethod } from '../services/apiService';
-import AdminAuthComp from './adminAuthComp';
+import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import { Link } from 'react-router-dom';
+import AdminAuthComp from '../adminAuthComp';
 
 export default function TypeServicesList() {
 

@@ -2,8 +2,8 @@ import React from 'react'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import {useForm} from "react-hook-form"
-import { API_URL, doApiGet, doApiMethod } from '../services/apiService';
-import AdminAuthComp from './adminAuthComp';
+import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
+import AdminAuthComp from '../adminAuthComp';
 
 
 export default function AddTypeService() {
