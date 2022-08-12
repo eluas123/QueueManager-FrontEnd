@@ -9,7 +9,9 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
 import { useNavigate, useParams } from 'react-router-dom';
+import HeaderClient from '../headerClient';
 import ClientAuthComp from '../clientAuthComp';
+
 
 export default function Appointments() {
 
@@ -89,9 +91,11 @@ let [nameService,setNameService] = useState({});
     }
 
   return (
+    <React.Fragment>
+      <HeaderClient/>
+      <ClientAuthComp/>
     <div className='container-fluid'>
     <div className='container'>
-      <ClientAuthComp/>
         <h1>Select the day you wanted</h1>
         <h4>Today is: {displayTodaysDate}</h4>
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
@@ -102,5 +106,6 @@ let [nameService,setNameService] = useState({});
         </div>
     </div>
     </div>
+    </React.Fragment>
   )
 }

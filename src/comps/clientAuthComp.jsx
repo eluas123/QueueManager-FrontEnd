@@ -31,6 +31,6 @@ export default function ClientAuthComp() {
      }
 
   return (
-    <div>ClientAuthComp</div>
+    <React.Fragment></React.Fragment>
   )
 }

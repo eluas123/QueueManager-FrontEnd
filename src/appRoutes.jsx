@@ -30,17 +30,17 @@ export default function AppRoutes() {
   const showDate = new Date();
   const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
 
-  //  useEffect(()=>{
-  //   if(localStorage[TOKEN_NAME]){
-  //     doApiUserInfo();
-  //   }
-  //  },[])
+   useEffect(()=>{
+    if(localStorage[TOKEN_NAME]){
+      doApiUserInfo();
+    }
+   },[])
 
-    // const doApiUserInfo = async()=>{
-    //   let url = API_URL+"/users/userInfo";
-    //   let resp = await doApiGet(url);
-    //   setUser({name: resp.data.name ,role: resp.data.role});
-    // }
+    const doApiUserInfo = async()=>{
+      let url = API_URL+"/users/userInfo";
+      let resp = await doApiGet(url);
+      setUser({name: resp.data.name ,role: resp.data.role});
+    }
 
   return (
     <BrowserRouter>
@@ -48,7 +48,7 @@ export default function AppRoutes() {
       displayTodaysDate,
       user,
       setUser,
-      // doApiUserInfo
+      doApiUserInfo
       }}>
     <Routes>
     {/*Route User*/}

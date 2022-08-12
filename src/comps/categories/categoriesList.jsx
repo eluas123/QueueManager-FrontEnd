@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL, doApiGet } from '../../services/apiService';
+import HeaderClient from '../headerClient';
 import './categories.css';
 
 export default function CategoriesList() {
@@ -20,6 +21,8 @@ export default function CategoriesList() {
    }
 
   return (
+    <React.Fragment>
+      <HeaderClient/>
     <div className='container-fluid Service shadow-sm pb-5'>
       <div className='container'>
          <h2 className='display-4 text-center my-3'>Select the service you want</h2>
@@ -42,5 +45,6 @@ export default function CategoriesList() {
          </div>
       </div>
     </div>
+    </React.Fragment>
   )
 }
