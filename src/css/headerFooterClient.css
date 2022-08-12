@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.headerNav {
+    direction: ltr;
+    min-height: 70px;
+    background: #0E1E5B;
+}
+
+nav li {
+    margin-top: 24px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+
+nav li:hover {
+    transform: scale(1.1, 1.1);
+}

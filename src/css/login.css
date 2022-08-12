@@ -1,9 +1,9 @@
 * {
     box-sizing: border-box;
+    direction: rtl;
 }
 
 .signUpFluid {
-    direction: rtl;
     min-height: 610px;
     background: linear-gradient(to right, rgba(0, 0, 255, 0.623) 50%, white 50%);
 }
