@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '..//css//headerFooterClient.css';
+import SideBar from './sideBar';
 
 export default function HeaderClient() {
   return (
