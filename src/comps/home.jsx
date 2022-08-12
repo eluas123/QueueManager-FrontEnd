@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
-import HeadrClient from './headerClient'
 
 export default function Home() {
 
 
   return (
-    <React.Fragment>
+    <div>
     <div className='container bg-dark'>
      <h1 className='text-white text-center'>Queue Manager</h1>
        <h3 className='text-white text-center mt-5'>Home Page</h3>
@@ -18,6 +17,6 @@ export default function Home() {
        <Link className='btn btn-success' to={'waze'}>Waze</Link>
      </div>
     </div>
-    </React.Fragment>
+    </div>
   )
 }
