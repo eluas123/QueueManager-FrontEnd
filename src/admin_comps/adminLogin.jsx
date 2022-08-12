@@ -1,5 +1,5 @@
-import { toast } from '@mobiscroll/react';
 import React from 'react'
+import { toast } from 'react-toastify';
 import {useForm} from "react-hook-form"
 import { useNavigate } from 'react-router-dom';
 import { API_URL, doApiMethod, TOKEN_NAME } from '../services/apiService';
@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const nav = useNavigate();
 
   const onSub = (_bodyData) =>{
-    console.log(_bodyData);
+    // console.log(_bodyData);
     doApiLogin(_bodyData);
   }
 
@@ -18,14 +18,14 @@ export default function AdminLogin() {
     try{
       let url = API_URL+"/users/login";
       let resp = await doApiMethod(url,"POST",_bodyData);
-      console.log(resp.data)
       if(resp.data.token){
         localStorage.setItem(TOKEN_NAME, resp.data.token);
         nav("/admin");
+        toast.success("You logged in");
       }
     }
     catch(err){
-    console.log(err.response);
+    console.log("err",err.response);
     toast.error("user or password wrong")
     }
   }

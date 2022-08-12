@@ -22,19 +22,33 @@ import Appointments from './comps/appointments/appointments';
 import TypeServicesList from './admin_comps/typeServices/typeServicesList';
 import EditTypeServices from './admin_comps/typeServices/editTypeServices';
 import AddTypeService from './admin_comps/typeServices/addTypeService';
+import { useEffect } from 'react';
+import { API_URL, doApiGet, TOKEN_NAME } from './services/apiService';
 
 export default function AppRoutes() {
-  const [userInfo,setUserInfo] =useState({})
+   const [user,setUser] = useState({name:"",role:""});
   const showDate = new Date();
   const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
 
+   useEffect(()=>{
+    if(localStorage[TOKEN_NAME]){
+      doApiUserInfo();
+    }
+   },[])
 
+    const doApiUserInfo = async()=>{
+      let url = API_URL+"/users/userInfo";
+      let resp = await doApiGet(url);
+      setUser({name: resp.data.name ,role: resp.data.role});
+    }
 
   return (
     <BrowserRouter>
     <AppContext.Provider value={{
       displayTodaysDate,
-      setUserInfo,userInfo
+      user,
+      setUser,
+      doApiUserInfo
       }}>
     <Routes>
     {/*Route User*/}

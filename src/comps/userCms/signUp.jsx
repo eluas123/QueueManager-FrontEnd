@@ -19,6 +19,7 @@ export default function SignUp() {
         let url = API_URL+"/users";
         try{
         let resp = await doApiMethod(url,"POST",_dataBody);
+        ///check if id exist
         if(resp.data._id){
             toast.success("You sign up succefuly, now log in");
             nav("/login");

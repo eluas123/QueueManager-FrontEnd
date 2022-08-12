@@ -7,8 +7,9 @@ import '../../css/appointments.css';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
+import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
 import { useNavigate, useParams } from 'react-router-dom';
+import ClientAuthComp from '../clientAuthComp';
 
 export default function Appointments() {
 
@@ -55,8 +56,7 @@ let [nameService,setNameService] = useState({});
     let data = {
       time: time,
       serviceID: nameService,
-      Date: DateSelect,
-      userID:(JSON.parse(localStorage['userInfo'])).name
+      Date: DateSelect
     }
     console.log("data",data);
     try{
@@ -90,7 +90,8 @@ let [nameService,setNameService] = useState({});
 
   return (
     <div className='container-fluid'>
-    <div className='container'> 
+    <div className='container'>
+      <ClientAuthComp/>
         <h1>Select the day you wanted</h1>
         <h4>Today is: {displayTodaysDate}</h4>
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />

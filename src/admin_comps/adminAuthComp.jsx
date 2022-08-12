@@ -20,13 +20,12 @@ export default function AdminAuthComp() {
         }
     }
     catch(err){
-        console.log(err.response)
         logOutAdmin("Please login to be here or token expired")
     }
 }
         const logOutAdmin = (_msg) =>{
             toast.warning(_msg);
-            nav("/admin");
+            nav("/admin/login");
         }
   return (
     <React.Fragment></React.Fragment>
