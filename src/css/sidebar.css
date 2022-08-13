@@ -102,6 +102,28 @@
 }
 
 @media (max-width:768px) {
+    .burgerLogin {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        border: 1px solid gray;
+    }
+    .burgerSignUp {
+        position: absolute;
+        top: 0;
+        right: 150px;
+        border: 1px solid gray;
+    }
+    .burgerUserName {
+        position: absolute;
+        top: 0;
+        left: 10px;
+    }
+    .burgerLogOut {
+        position: absolute;
+        left: 0;
+        margin-top: 8px;
+    }
     .bm-burger-button {
         display: block;
         position: absolute;

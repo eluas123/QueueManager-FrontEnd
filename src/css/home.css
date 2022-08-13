@@ -1,0 +1,7 @@
+.homePage .box {
+    background: gainsboro;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    cursor: pointer;
+}

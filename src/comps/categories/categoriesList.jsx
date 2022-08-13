@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL, doApiGet } from '../../services/apiService';
 import HeaderClient from '../headerClient';
-import './categories.css';
+import '..//..//css//categories.css';
 
 export default function CategoriesList() {
 
