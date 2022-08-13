@@ -15,7 +15,7 @@ import ClientAuthComp from '../clientAuthComp';
 
 export default function Appointments() {
 
-const {displayTodaysDate} = useContext(AppContext);
+const {displayTodaysDate,user} = useContext(AppContext);
 let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
@@ -57,6 +57,7 @@ let [nameService,setNameService] = useState({});
     let url = API_URL+"/appointments";
     let data = {
       time: time,
+      userID:user.name,
       serviceID: nameService,
       Date: DateSelect
     }

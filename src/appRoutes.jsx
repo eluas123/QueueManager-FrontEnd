@@ -24,6 +24,8 @@ import EditTypeServices from './admin_comps/typeServices/editTypeServices';
 import AddTypeService from './admin_comps/typeServices/addTypeService';
 import { useEffect } from 'react';
 import { API_URL, doApiGet, TOKEN_NAME } from './services/apiService';
+import LogOut from './comps/userCms/logOut';
+import UserAppointments from './comps/appointments/userAppointments';
 
 export default function AppRoutes() {
    const [user,setUser] = useState({name:"",role:""});
@@ -56,7 +58,9 @@ export default function AppRoutes() {
     <Route path="/about" element={<About/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/login" element={<Login/>}/>
-    <Route path="/service" element={<CategoriesList/>}/>    
+    <Route path="/logout" element={<LogOut/>}/>
+    <Route path="/service" element={<CategoriesList/>}/>  
+    <Route path="/userAppointments" element={<UserAppointments/>}/>  
     <Route path="/appointments/:idService" element={<Appointments/>}/>    
 
     <Route path="/*" element={<Page404/>}/>

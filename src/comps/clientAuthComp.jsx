@@ -16,16 +16,16 @@ export default function ClientAuthComp() {
             let url = API_URL+"/users/checkToken";
             let resp = await doApiGet(url);
             if(!resp.data.role){
-                logOutAdmin("You must be admin to be here");
+                checkLogin("You must be log in to invite the appointment");
             }
         }
         catch(err){
             console.log(err.response);
-            logOutAdmin("Please login to be here");
+            checkLogin("Please login to be here");
         }
     }
 
-     const logOutAdmin =(_msg)=>{
+     const checkLogin =(_msg)=>{
         toast.warning(_msg);
         nav("/login");
      }

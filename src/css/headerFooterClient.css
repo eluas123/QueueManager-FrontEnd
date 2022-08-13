@@ -24,3 +24,9 @@ nav li:hover {
 .link {
     font-size: 16px;
 }
+
+@media (max-width:768px) {
+    .NavNone {
+        display: none;
+    }
+}

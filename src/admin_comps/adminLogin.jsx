@@ -18,6 +18,8 @@ export default function AdminLogin() {
     try{
       let url = API_URL+"/users/login";
       let resp = await doApiMethod(url,"POST",_bodyData);
+      console.log(resp.data);
+      ///check if we get token and save it in localSorage
       if(resp.data.token){
         localStorage.setItem(TOKEN_NAME, resp.data.token);
         nav("/admin");

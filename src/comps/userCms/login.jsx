@@ -1,12 +1,15 @@
 import React from 'react'
+import { useContext } from 'react';
 import {useForm} from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AppContext } from '../../context/context';
 import { API_URL, doApiMethod, TOKEN_NAME } from '../../services/apiService';
 import '..//..//css/login.css';
 
 export default function SignUp() {
 
+    const {setUser,doApiUserInfo} = useContext(AppContext);
     const nav = useNavigate();
     const{register , handleSubmit , formState: { errors } } = useForm();
     const onSub = (_dataBody) =>{
@@ -19,8 +22,12 @@ export default function SignUp() {
         try{
         let resp = await doApiMethod(url,"POST",_dataBody);
         if(resp.data.token){
-          console.log(resp.data.user.name)
+          ///check if we get the token
+          console.log(resp.data.token);
+          ///save the token and set it after log in
           localStorage.setItem(TOKEN_NAME,resp.data.token)
+          setUser(resp.data.user);
+          doApiUserInfo();
             toast.success("You logged in");
             nav("/");
         }
