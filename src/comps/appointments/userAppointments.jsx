@@ -18,10 +18,16 @@ export default function UserAppointments() {
     const doApi = async()=>{
         let url = API_URL+"/appointments";
         let resp = await doApiGet(url);
-        setAr(resp.data);
         console.log(resp.data);
+        setAr(resp.data);
     }
-   
+
+    const found = ar.find(element => {
+        return element.phone == user.phone;
+      });
+
+      console.log("found",found);
+
   return (
     <React.Fragment>
         <HeaderClient/>

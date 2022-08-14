@@ -41,7 +41,7 @@ export default function AppRoutes() {
     const doApiUserInfo = async()=>{
       let url = API_URL+"/users/userInfo";
       let resp = await doApiGet(url);
-      setUser({name: resp.data.name ,role: resp.data.role});
+      setUser({name: resp.data.name ,role: resp.data.role, id:resp.data._id, phone:resp.data.phone});
     }
 
   return (

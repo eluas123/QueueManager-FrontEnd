@@ -1,14 +1,14 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import '../../css/appointments.css';
 import { toast } from 'react-toastify';
 import { Button, Calendar } from 'antd';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
-import '../../css/appointments.css';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import HeaderClient from '../headerClient';
 import ClientAuthComp from '../clientAuthComp';
 
@@ -19,12 +19,19 @@ const {displayTodaysDate,user} = useContext(AppContext);
 let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
+let [show,setShow] = useState(false);
 let [nameService,setNameService] = useState({});
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
   let DateSelect = selectedValue?.format('DD-M-YYYY');
 
   let params = useParams();
+
+   const hideButton = () =>{
+    setShow(true);
+    // if(Date.now > val)
+    // setShow(true);
+   }
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -58,6 +65,7 @@ let [nameService,setNameService] = useState({});
     let data = {
       time: time,
       userID:user.name,
+      phone:user.phone,
       serviceID: nameService,
       Date: DateSelect
     }
@@ -87,6 +95,7 @@ let [nameService,setNameService] = useState({});
           return <Button onClick={()=>{
             window.confirm("Are you sure you want to add this appointment") &&
             doApiPOST(val);
+           {show && hideButton()}
           }} key={val}>{val}</Button>
          })
     }
@@ -102,7 +111,7 @@ let [nameService,setNameService] = useState({});
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>
-        <div className='box appointments'>
+        <div className='appointments'>
           {Appointment()}
         </div>
     </div>
