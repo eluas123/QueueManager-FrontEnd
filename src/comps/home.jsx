@@ -5,6 +5,7 @@ import {BsCalendar2Day,BsWhatsapp} from 'react-icons/bs';
 import {SiWaze,SiAboutdotme} from 'react-icons/si';
 import {MdSmsFailed,MdProductionQuantityLimits} from 'react-icons/md';
 import '..//css//home.css';
+import Footer from './footer';
 
 export default function Home() {
 
@@ -17,11 +18,11 @@ export default function Home() {
         <div className='container'>
           <div className='row d-flex justify-content-center'>
         <div className='col-md-6 d-flex justify-content-evenly'>
-        <Link to={"/whatsApp"}>
+          <a target={"_blank"} href='https://api.whatsapp.com/send/?phone=972548173179&text=Elias+agever&type=phone_number&app_absent=0'>
           <div className='box d-flex align-items-center justify-content-center'>
           <BsWhatsapp size={'3em'}/>
           </div>
-        </Link>
+          </a>
         <Link to={"/service"}>
           <div className='box d-flex align-items-center justify-content-center'>
           <BsCalendar2Day size={'3em'}/>
@@ -55,6 +56,7 @@ export default function Home() {
         </div>
         </div>
       </div>
+      <Footer/>
     </React.Fragment>
   )
 }

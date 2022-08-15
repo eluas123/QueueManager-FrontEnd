@@ -19,7 +19,7 @@ const {displayTodaysDate,user} = useContext(AppContext);
 let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
-let [show,setShow] = useState(false);
+let [show,setShow] = useState(true);
 let [nameService,setNameService] = useState({});
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
@@ -27,11 +27,9 @@ let [nameService,setNameService] = useState({});
 
   let params = useParams();
 
-   const hideButton = () =>{
-    setShow(true);
-    // if(Date.now > val)
-    // setShow(true);
-   }
+  // const handleClick = event => {
+  //   setIsShown(current => !current);
+  // };
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -69,7 +67,6 @@ let [nameService,setNameService] = useState({});
       serviceID: nameService,
       Date: DateSelect
     }
-    console.log("data",data);
     try{
     let resp = await doApiMethod(url,"POST",data);
     console.log(resp.data);
@@ -87,15 +84,16 @@ let [nameService,setNameService] = useState({});
     const Appointment = () =>{
       let array = [];
       let dist = (ar*60)/srv;
-      for (let i = 0; i < dist; i++) {
+      for (let i = 0; i < dist-1; i++) {
         array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
         start = array[i];
    }
-         return array.map((val) =>{
+          return array.map((val) =>{
           return <Button onClick={()=>{
             window.confirm("Are you sure you want to add this appointment") &&
             doApiPOST(val);
-           {show && hideButton()}
+            // handleClick();
+
           }} key={val}>{val}</Button>
          })
     }

@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useState } from 'react';
 import { API_URL, doApiGet } from '../../services/apiService';
 import { useEffect } from 'react';
-import AdminListAppoint from './adminListAppoint';
+import AdminListAppoint from './AdminListAppoint';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import AdminAuthComp from '../adminAuthComp';

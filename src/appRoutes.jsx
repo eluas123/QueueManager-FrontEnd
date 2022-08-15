@@ -1,5 +1,5 @@
 import React from 'react'
-import {ToastContainer} from "react-toastify"
+import {ToastContainer } from "react-toastify"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useState } from 'react';
 import { AppContext } from './context/context';
@@ -23,7 +23,7 @@ import TypeServicesList from './admin_comps/typeServices/typeServicesList';
 import EditTypeServices from './admin_comps/typeServices/editTypeServices';
 import AddTypeService from './admin_comps/typeServices/addTypeService';
 import { useEffect } from 'react';
-import { API_URL, doApiGet, TOKEN_NAME } from './services/apiService';
+import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from './services/apiService';
 import LogOut from './comps/userCms/logOut';
 import UserAppointments from './comps/appointments/userAppointments';
 
@@ -50,7 +50,7 @@ export default function AppRoutes() {
       displayTodaysDate,
       user,
       setUser,
-      doApiUserInfo
+      doApiUserInfo,
       }}>
     <Routes>
     {/*Route User*/}
@@ -60,7 +60,7 @@ export default function AppRoutes() {
     <Route path="/login" element={<Login/>}/>
     <Route path="/logout" element={<LogOut/>}/>
     <Route path="/service" element={<CategoriesList/>}/>  
-    <Route path="/userAppointments" element={<UserAppointments/>}/>  
+    {user && <Route path="/userAppointments" element={<UserAppointments/>}/>}
     <Route path="/appointments/:idService" element={<Appointments/>}/>    
 
     <Route path="/*" element={<Page404/>}/>
