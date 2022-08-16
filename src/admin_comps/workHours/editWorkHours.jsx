@@ -65,7 +65,7 @@ export default function EditWorkHours() {
      {errors.end && <small className='text-danger d-block'>Enter valid time</small>}
 
      <label>Date</label>
-     <input {...register('date',{minLength:2})} type="text" className='form-control'/>
+     <input {...register('date',{minLength:2})} type="text" defaultValue={wrk.date} className='form-control'/>
      {errors.date && <small className='text-danger d-block'></small>}
      <button className='btn btn-success mt-3'>update new work hours</button>
       </form>

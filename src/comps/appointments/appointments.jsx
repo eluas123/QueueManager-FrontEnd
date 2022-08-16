@@ -38,21 +38,21 @@ let [nameService,setNameService] = useState({});
 
   useEffect(() =>{
     doApi();
- },[]);
+ },[DateSelect]);
 
    const doApi = async() =>{
      let urlService = API_URL+"/typeServices/infoService/"+params.idService;
-    let urlWorkHours = API_URL+"/workHours/infoworkHours/getID/"+DateSelect;
+    let urlWorkHours = API_URL+"/workHours/workHoursByDate/"+DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
     // console.log("service ",respService.data);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
-    // console.log("workhours ",respWorkHours.data.start); 
+    console.log("workhours ",respWorkHours.data.start); 
     setStart(respWorkHours.data.start);
-    // console.log("workhours ",respWorkHours.data.end);
-    Number(respWorkHours.data.end);
-    Number(respWorkHours.data.start);
+    console.log("workhours ",respWorkHours.data.end);
+    // Number(respWorkHours.data.end);
+    // Number(respWorkHours.data.start);
     let distance = (respWorkHours.data.end.substring(0,2)) - (respWorkHours.data.start.substring(0,2));
     // console.log("distance",distance);
     setAr(distance)

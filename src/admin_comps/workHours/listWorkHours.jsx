@@ -22,6 +22,10 @@ export default function ListWorkHours(props) {
     }
 
     const onDelClick = async(_idDel) =>{
+        if(_idDel == '62e10fd371793a1a0ac6b09a'){
+            toast.error("you cant delete the deafult work hours");
+            return;
+        }
         let url = API_URL+"/workHours/"+_idDel;
         try{
             let resp = await doApiMethod(url,"DELETE");
