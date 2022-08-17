@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import '..//css//headerFooterClient.css';
 import { AppContext } from '../context/context';
+import AdminSideBar from './adminSideBar';
 
 export default function AdminHeader() {
 
@@ -15,11 +16,10 @@ export default function AdminHeader() {
       <nav className='NavNone'>
         <ul className='nav d-flex align-items-center justify-content-around'>
             <strong className='text-white mt-4'>Admin</strong>
-        <li><Link to={'/admin'} className='btn text-white'>עמוד הבית</Link></li>
-            <li> <Link to={'appointments'} className='btn text-white'>צפייה בתורים</Link></li>
-            <li><Link to={'listServices'} className='btn text-white'>סוגי שירות</Link></li>
-            <li><Link to={'listWorkHours'} className='btn text-white'>שעות עבודה </Link></li>
-            <li> <Link to={'ListUsers'} className='btn text-white'>רשימת לקוחות</Link></li>
+            <li> <Link to={'/admin/appoitments'} className='btn text-white'>צפייה בתורים</Link></li>
+            <li><Link to={'/admin/listServices'} className='btn text-white'>סוגי שירות</Link></li>
+            <li><Link to={'/admin/listWorkHours'} className='btn text-white'>שעות עבודה </Link></li>
+            <li> <Link to={'/admin/ListUsers'} className='btn text-white'>רשימת לקוחות</Link></li>
         {!user.name ?
         <div className='d-flex mt-3'>
           <Link className='btn btn-success text-white me-1 link' to={'/login'}>login</Link>
@@ -34,7 +34,7 @@ export default function AdminHeader() {
         </ul>
       </nav>
       </div>
-      {/* <SideBar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/> */}
+      <AdminSideBar pageWrapId={'page-wrap'} outerContainerId={'outer-container'}/>
 </header>
   )
 }
