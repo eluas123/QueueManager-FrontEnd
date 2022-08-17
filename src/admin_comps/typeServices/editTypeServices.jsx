@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import {useForm} from "react-hook-form"
 import AdminAuthComp from '../adminAuthComp';
+import AdminHeader from '../adminHeader';
 
 export default function EditTypeServices() {
    
@@ -47,6 +48,8 @@ export default function EditTypeServices() {
 
 
   return (
+    <React.Fragment>
+       <AdminHeader/>
     <div className='container'>
         <AdminAuthComp/>
         <h1>Edit Service</h1>
@@ -67,5 +70,6 @@ export default function EditTypeServices() {
         <Link className='btn btn-danger ms-3 mt-3' to="/admin/typeServices">Back</Link>
        </form>
     </div>
+    </React.Fragment>
   )
 }

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {useForm} from "react-hook-form"
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
+import AdminHeader from '../adminHeader';
 
 
 export default function AddTypeService() {
@@ -39,6 +40,8 @@ export default function AddTypeService() {
 
 
   return (
+    <React.Fragment>
+      <AdminHeader/>
     <div className='container'>
       <AdminAuthComp/>
       <h1>Add new Service</h1>
@@ -57,5 +60,6 @@ export default function AddTypeService() {
         <button className='btn btn-success mt-3'>Add new Service</button>
       </form>
     </div>
+    </React.Fragment>
   )
 }

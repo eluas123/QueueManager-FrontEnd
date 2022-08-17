@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import { Link } from 'react-router-dom';
+import AdminHeader from '../adminHeader';
 
 export default function ListWorkHours(props) {
     
@@ -40,6 +41,8 @@ export default function ListWorkHours(props) {
     }
 
   return (
+    <React.Fragment>
+        <AdminHeader/>
     <div className='container'>
      <AdminAuthComp/>
      <h2>List of workHours you updated</h2>
@@ -75,5 +78,6 @@ export default function ListWorkHours(props) {
         </tbody>
      </table>
     </div>
+    </React.Fragment>
   )
 }

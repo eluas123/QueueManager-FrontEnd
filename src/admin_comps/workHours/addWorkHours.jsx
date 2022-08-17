@@ -8,6 +8,7 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Alert, Calendar } from 'antd';
 import moment from 'moment';
 import { useRef } from 'react';
+import AdminHeader from '../adminHeader';
 
 
 export default function AddWorkHours(props) {
@@ -49,6 +50,8 @@ export default function AddWorkHours(props) {
   
 
   return (
+    <React.Fragment>
+        <AdminHeader/>
     <div className='container'>
     <AdminAuthComp/>
     <h1>update new work hours</h1>
@@ -70,5 +73,6 @@ export default function AddWorkHours(props) {
       <Calendar value={value} onSelect={onSelect} fullscreen={false} />
     </div>
     </div>
+    </React.Fragment>
   )
 }

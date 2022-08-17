@@ -10,6 +10,12 @@
     background: #0E1E5B;
 }
 
+.headerNavAdmin {
+    direction: ltr;
+    min-height: 70px;
+    background: #000;
+}
+
 nav li {
     margin-top: 24px;
     font-weight: bold;

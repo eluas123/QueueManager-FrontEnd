@@ -22,7 +22,7 @@ export default function AdminLogin() {
       ///check if we get token and save it in localSorage
       if(resp.data.token){
         localStorage.setItem(TOKEN_NAME, resp.data.token);
-        nav("/admin");
+        nav("/admin/ListUsers");
         toast.success("You logged in");
       }
     }

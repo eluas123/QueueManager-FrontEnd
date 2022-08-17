@@ -11,7 +11,6 @@ import Page404 from './comps/page404'
 import SignUp from './comps/userCms/signUp'
 import AdminLogin from './admin_comps/adminLogin'
 import Login from './comps/userCms/login'
-import AdminHomePage from './admin_comps/adminHomePage';
 import QueueTable from './admin_comps/admin_Calendar/queueTable';
 import ListWorkHours from './admin_comps/workHours/listWorkHours';
 import AddWorkHours from './admin_comps/workHours/addWorkHours';
@@ -23,7 +22,7 @@ import TypeServicesList from './admin_comps/typeServices/typeServicesList';
 import EditTypeServices from './admin_comps/typeServices/editTypeServices';
 import AddTypeService from './admin_comps/typeServices/addTypeService';
 import { useEffect } from 'react';
-import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from './services/apiService';
+import { API_URL, doApiGet, TOKEN_NAME } from './services/apiService';
 import LogOut from './comps/userCms/logOut';
 import UserAppointments from './comps/appointments/userAppointments';
 
@@ -55,18 +54,17 @@ export default function AppRoutes() {
     <Routes>
     {/*Route User*/}
     <Route path="/" element={<Home/>}/>
-    <Route path="/about" element={<About/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/logout" element={<LogOut/>}/>
+    <Route path="/about" element={<About/>}/>
     <Route path="/service" element={<CategoriesList/>}/>  
     {user && <Route path="/userAppointments" element={<UserAppointments/>}/>}
     <Route path="/appointments/:idService" element={<Appointments/>}/>    
 
     <Route path="/*" element={<Page404/>}/>
     {/*Route Admin*/}
-    <Route path="/admin" element={<AdminHomePage/>}/>
-    <Route path="/admin/login" element={<AdminLogin/>}/>    
+    <Route path="/admin" element={<AdminLogin/>}/>    
     <Route path="/admin/appoitments" element={<QueueTable/>}/>
     <Route path="/admin/ListUsers" element={<UserList/>}/>
     <Route path="/admin/listServices" element={<TypeServicesList/>}/>

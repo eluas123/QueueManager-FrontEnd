@@ -8,6 +8,7 @@ import AdminListAppoint from './AdminListAppoint';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import AdminAuthComp from '../adminAuthComp';
+import AdminHeader from '../adminHeader';
 
 
 const QueueTable = () => {
@@ -41,6 +42,8 @@ const {displayTodaysDate} = useContext(AppContext);
 
 
   return (
+    <React.Fragment>
+      <AdminHeader/>
     <div className="container">
       <AdminAuthComp/>
       <h1>Today is: {displayTodaysDate}</h1>
@@ -54,6 +57,7 @@ const {displayTodaysDate} = useContext(AppContext);
         )
        })}
     </div>
+    </React.Fragment>
   );
 };
 

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import { Link } from 'react-router-dom';
 import AdminAuthComp from '../adminAuthComp';
+import AdminHeader from '../adminHeader';
 
 export default function TypeServicesList() {
 
@@ -36,6 +37,8 @@ export default function TypeServicesList() {
         }
     }
   return (
+    <React.Fragment>
+       <AdminHeader/>
     <div className='container'>
       <AdminAuthComp/>
       <h2>List of typeServices in the Systems</h2>
@@ -70,5 +73,6 @@ export default function TypeServicesList() {
         </tbody>
       </table>
     </div>
+    </React.Fragment>
   )
 }

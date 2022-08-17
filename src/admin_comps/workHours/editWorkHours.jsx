@@ -6,6 +6,7 @@ import {useForm} from "react-hook-form"
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
+import AdminHeader from '../adminHeader';
 
 export default function EditWorkHours() {
 
@@ -51,6 +52,8 @@ export default function EditWorkHours() {
 
 
   return (
+    <React.Fragment>
+      <AdminHeader/>
     <div className='container'>
       <AdminAuthComp/>
       <h1>Edit Work Hours</h1>
@@ -70,5 +73,6 @@ export default function EditWorkHours() {
      <button className='btn btn-success mt-3'>update new work hours</button>
       </form>
     </div>
+    </React.Fragment>
   )
 }

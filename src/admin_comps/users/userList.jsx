@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react'
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
+import AdminHeader from '../adminHeader';
 
 export default function UserList() {
     
@@ -34,6 +35,8 @@ export default function UserList() {
         }
     }
   return (
+    <React.Fragment>
+        <AdminHeader/>
     <div className='container'>
         <AdminAuthComp/>
         <h1>List of users</h1>
@@ -67,5 +70,6 @@ export default function UserList() {
         </tbody>
         </table>
     </div>
+    </React.Fragment>
   )
 }
