@@ -73,11 +73,11 @@ export default function EditWorkHours() {
       <div className='d-flex'>
       <form onSubmit={handleSubmit(onSub)} className='col-md-4 p-3 shadow mt-3 rtlFluid'>
       <label>שעת התחלה</label>
-     <input {...register('start',{minLength:2})} type='time' defaultValue={wrk.start} className="form-control"/>
+     <input {...register('start',{required:true ,minLength:2})} type='time' defaultValue={wrk.start} className="form-control"/>
      {errors.start && <small className='text-danger d-block'>הזן זמן תקין</small>}
 
      <label>שעת סיום</label>
-     <input {...register('end',{minLength:2})} type='time' defaultValue={wrk.end} className="form-control"/>
+     <input {...register('end',{required:true ,minLength:2})} type='time' defaultValue={wrk.end} className="form-control"/>
      {errors.end && <small className='text-danger d-block'>הזן שם תקין</small>}
 
      <label>תאריך</label>
