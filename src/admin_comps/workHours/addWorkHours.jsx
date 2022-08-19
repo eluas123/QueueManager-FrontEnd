@@ -7,8 +7,8 @@ import AdminAuthComp from '../adminAuthComp';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Alert, Calendar } from 'antd';
 import moment from 'moment';
-import { useRef } from 'react';
 import AdminHeader from '../adminHeader';
+import '..//..//css//rtl.css';
 
 
 export default function AddWorkHours(props) {
@@ -19,7 +19,6 @@ export default function AddWorkHours(props) {
 
   const nav = useNavigate();
   let {register, handleSubmit, formState: {errors}} = useForm();
-  let input = useRef();
 
   const onSub = (_dataBody) =>{
     _dataBody.date = dateSelect;
@@ -52,25 +51,26 @@ export default function AddWorkHours(props) {
   return (
     <React.Fragment>
         <AdminHeader/>
+        <AdminAuthComp/>
     <div className='container'>
-    <AdminAuthComp/>
-    <h1>update new work hours</h1>
+    <h1 className='text-center mt-5'>עדכון שעות עבודה ותאריך</h1>
     <div className='d-flex'>
-    <form onSubmit={handleSubmit(onSub)} className='col-md-6 p-3 shadow'>
-     <label>Start</label>
+    <form onSubmit={handleSubmit(onSub)} className='col-md-4 p-3 shadow mt-3 rtlFluid'>
+     <label>שעת התחלה</label>
      <input {...register('start',{required:true, minLength:2})} type='time' defaultValue={"08:00"} className="form-control"/>
-     {errors.start && <small className='text-danger d-block'>Enter valid time</small>}
+     {errors.start && <small className='text-danger d-block'>הזן זמן תקין</small>}
 
-     <label>End</label>
+     <label>שעת סיום</label>
      <input {...register('end',{required:true, minLength:2})} type='time' defaultValue={"18:00"} className="form-control"/>
-     {errors.end && <small className='text-danger d-block'>Enter valid time</small>}
+     {errors.end && <small className='text-danger d-block'>הזן זמן תקין</small>}
 
-     <label>Date</label>
+     <label>תאריך</label>
     <div className='form-control'>{dateSelect}</div>
-     <button className='btn btn-success mt-3'>update new work hours</button>
+     <button className='btn btn-success mt-3 form-control'> הוסף</button>
     </form>
-    
+      <div className='ms-2'>
       <Calendar value={value} onSelect={onSelect} fullscreen={false} />
+      </div>
     </div>
     </div>
     </React.Fragment>

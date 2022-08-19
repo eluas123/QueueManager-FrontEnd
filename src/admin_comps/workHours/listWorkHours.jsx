@@ -43,18 +43,19 @@ export default function ListWorkHours(props) {
   return (
     <React.Fragment>
         <AdminHeader/>
+        <AdminAuthComp/>
     <div className='container'>
-     <AdminAuthComp/>
-     <h2>List of workHours you updated</h2>
-     <Link to={"/admin/addWorkHours"} className='btn btn-success'>Update work hours</Link>
-     <table className='table table-striped table-hover mt-3'>
+     <h2 className='text-center mt-5'>רשימת עדכוני שעות עבודה </h2>
+     <Link to={"/admin/addWorkHours"} className='btn btn-primary form-control mb-3'>עדכון שעות עבודה ותאריך</Link>
+     <small>*השורה האחרונה זו הברירת מחדל של שעות העבודה</small>
+     <table className='table table-striped table-hover'>
         <thead className='bg-dark text-white'>
             <tr>
                 <th>#</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Date</th>
-                <th>Del/Edit</th>
+                <th>שעת התחלה</th>
+                <th>שעת סיום</th>
+                <th>תאריך</th>
+                <th>מחק/ערוך</th>
             </tr>
         </thead>
         <tbody>
@@ -64,13 +65,13 @@ export default function ListWorkHours(props) {
                         <td className='numbers'>{i+1}</td>
                         <td>{item.start}</td>
                         <td>{item.end}</td>
-                        <td>{item.date}</td>
+                        <td>{item.date || 'ברירת מחדל'}</td>
                         <td>
                             <button onClick={() =>{
                                 window.confirm("Are you sure you want to delete") &&
                                 onDelClick(item._id);
-                            }} className='btn bagde bg-danger me-2'>Del</button>
-                            <Link to={"/admin/editworkHours/"+item._id} className='btn bagde bg-info me-2'>Edit</Link> 
+                            }} className='btn bagde bg-danger me-2 text-white'>מחק</button>
+                            <Link to={"/admin/editworkHours/"+item._id} className='btn bagde bg-primary me-2 text-white'>ערוך</Link> 
                         </td>
                     </tr>
                 )

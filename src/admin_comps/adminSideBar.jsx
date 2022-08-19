@@ -13,13 +13,13 @@ export default function AdminSideBar() {
     <Menu>
       {!user.name ?
       <div>
-      <Link className='btn menu-item text-white burgerLogin' to={"/login"}>Login</Link>
-      <Link className='btn menu-item text-white burgerSignUp' to={"/signup"}>signup</Link>
+      <Link className='btn menu-item text-white burgerLogin form-control' to={"/login"}>Login</Link>
+      <Link className='btn menu-item text-white burgerSignUp form-control' to={"/signup"}>signup</Link>
       </div>
       :
       <div className='burgerUserName'>
       <div className='text-white'>Welcome {user.name},</div>
-      <Link className='btn btn-danger text-white burgerLogOut' to={'/logout'}>Log out</Link>
+      <Link className='btn btn-danger text-white burgerLogOut form-control' to={'/logout'}>Log out</Link>
     </div>
 }
         <Link className="menu-item mt-5 text-white" to={"/admin/appoitments"}>צפייה בתורים</Link>

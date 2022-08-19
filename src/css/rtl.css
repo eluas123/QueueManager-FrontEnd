@@ -1,0 +1,7 @@
+.rtlFluid {
+    direction: rtl;
+}
+
+.rtlFluid input {
+    min-height: 50px;
+}

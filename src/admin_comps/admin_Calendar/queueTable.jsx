@@ -4,20 +4,22 @@ import moment from 'moment';
 import React, { useState } from 'react';
 import { API_URL, doApiGet } from '../../services/apiService';
 import { useEffect } from 'react';
-import AdminListAppoint from './AdminListAppoint';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
+import FooterAdmin from '../footerAdmin';
 
 
-const QueueTable = () => {
+export default function QueueTable () {
 
 const {displayTodaysDate} = useContext(AppContext);
   
   const [ar,setAr] = useState([]);
+  const [show,setShow] = useState(false);
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
+  const DateSelectd = selectedValue?.format('DD-M-YYYY');
 
   useEffect(() =>{
     doApi();
@@ -25,40 +27,62 @@ const {displayTodaysDate} = useContext(AppContext);
 
 
    const doApi = async() =>{
-    let url = API_URL+`/appointments/list-appointments/${selectedValue?.format('DD-M-YYYY')}`;
+    let url = API_URL+`/appointments/list-appointments/${DateSelectd}`;
     let resp = await doApiGet(url);
     console.log(resp.data);
     setAr(resp.data);
     if(resp.data.length == 0){
+      setShow(true);
      console.log("There is no appointments today")
+    }else{
+      setShow(false);
     }
   }
 
   const onSelect = (newValue) => {
     setValue(newValue);
     setSelectedValue(newValue);
-    console.log(selectedValue?.format('DD-M-YYYY'));    
+    console.log(selectedValue?.format('DD-M-YYYY'));   
   };
 
 
   return (
     <React.Fragment>
       <AdminHeader/>
-    <div className="container">
       <AdminAuthComp/>
-      <h1>Today is: {displayTodaysDate}</h1>
-       <Alert message={`You selected date: ${selectedValue?.format('DD-M-YYYY')}`} />
+    <div className="container">
+      <h1 className='text-center mt-5'>רשימת כול התורים שנקבעו</h1>
+      <h4>התאריך היום: {displayTodaysDate}</h4>
       <Calendar value={value} fullscreen={false} onSelect={onSelect} />
       <hr></hr>
-      <h1 className='text-center'>All Appointments: </h1>
-       {ar.map(item => {
-        return (
-          <AdminListAppoint item={item}/> 
-        )
-       })}
+      <h2 className='text-center'>כול התורים לתאריך: {DateSelectd}</h2>
+      {show ? <div className='text-center'><h3>לא נקבעו תורים לתאריך זה</h3></div> :
+      <table className='table table-striped table-hover mt-3 mb-5'>
+            <thead className='bg-dark text-white'>
+                <tr>
+                    <td>#</td>
+                    <td>שם</td>
+                    <td> שירות</td>
+                    <td>שעה</td>
+                    <td>whatsApp</td>
+                </tr>
+            </thead>
+        <tbody>
+            {ar.map((item,i) =>{
+                return(
+                    <tr key={item._id}>
+                    <td className='numbers'>{i+1}</td>
+                    <td>{item.userID}</td>
+                    <td>{item.serviceID}</td>
+                    <td>{item.time}</td>
+                    <td><a target={"_blank"} href={`https://api.whatsapp.com/send/?phone=972${item.phone.substring(1)}&text=היי מה קורה ${item.userID}? את/ה בדרך?&type=phone_number&app_absent=0`}>{item.phone}</a></td>
+                    </tr>
+                )
+            })}
+        </tbody>
+        </table>}
     </div>
+    {/* <FooterAdmin/> */}
     </React.Fragment>
-  );
-};
-
-export default QueueTable;
+  )
+          }

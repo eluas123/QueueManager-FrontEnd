@@ -22,8 +22,8 @@ export default function HeaderClient() {
             <li> <Link to={'/products'} className='btn text-white'>מוצרים</Link></li>
             {!user.name ?
             <div className='d-flex mt-3'>
-              <Link className='btn btn-success text-white me-1 link' to={'/login'}>login</Link>
-              <Link className='btn btn-info text-white w-50 link' to={'/signup'}>signup</Link>
+              <Link className='btn btn-success text-white me-1 link form-control' to={'/login'}>login</Link>
+              <Link className='btn btn-info text-white w-50 link form-control' to={'/signup'}>signup</Link>
             </div>
             :
             <div className='d-flex mt-4'>

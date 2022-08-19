@@ -20,17 +20,10 @@ export default function AdminHeader() {
             <li><Link to={'/admin/listServices'} className='btn text-white'>סוגי שירות</Link></li>
             <li><Link to={'/admin/listWorkHours'} className='btn text-white'>שעות עבודה </Link></li>
             <li> <Link to={'/admin/ListUsers'} className='btn text-white'>רשימת לקוחות</Link></li>
-        {!user.name ?
-        <div className='d-flex mt-3'>
-          <Link className='btn btn-success text-white me-1 link' to={'/login'}>login</Link>
-          <Link className='btn btn-info text-white w-50 link' to={'/signup'}>signup</Link>
-        </div>
-        :
         <div className='d-flex mt-4'>
           <span className='btn text-white me-1 link'>Welcome {user.name},</span>
           <Link className='btn btn-danger text-white link' to={'/logout'}>Log out</Link>
         </div>
-      }
         </ul>
       </nav>
       </div>

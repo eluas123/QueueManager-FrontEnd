@@ -10,6 +10,13 @@
     background: #0E1E5B;
 }
 
+.footerAdmin {
+    background: #000;
+    min-height: 70px;
+    position: absolute;
+    bottom: 0;
+}
+
 .headerNavAdmin {
     direction: ltr;
     min-height: 70px;

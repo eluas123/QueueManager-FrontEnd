@@ -1,0 +1,14 @@
+.adminLogin {
+    min-height: 400px;
+}
+
+.adminLogin input {
+    min-height: 50px;
+}
+
+.adminLogin button {
+    min-height: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+}

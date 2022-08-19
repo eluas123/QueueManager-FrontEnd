@@ -41,15 +41,16 @@ export default function TypeServicesList() {
        <AdminHeader/>
     <div className='container'>
       <AdminAuthComp/>
-      <h2>List of typeServices in the Systems</h2>
-      <Link to={"/admin/addService"} className='btn btn-success'>Add new Service</Link>
-      <table className='table table-striped table-hover'>
-        <thead>
+      <h2 className='text-center mt-5'>רשימת כול סוגי השירות במערכת</h2>
+      <Link to={"/admin/addService"} className='btn btn-primary form-control'>הוספת שירות למערכת</Link>
+      <table className='table table-striped table-hover mt-3'>
+        <thead className='bg-dark text-white'>
           <tr>
             <th>#</th>
-            <th>Name Service</th>
-            <th>length of Service</th>
-            <th>price</th>
+            <th>שם השירות</th>
+            <th>אורך השירות (דקות)</th>
+            <th>מחיר</th>
+            <th>מחיקה/עריכה</th>
           </tr>
         </thead>
         <tbody>
@@ -58,14 +59,14 @@ export default function TypeServicesList() {
               <tr key={item._id}>
               <td>{i+1}</td>
               <td>{item.name}</td>
-              <td>{item.lengthService} mins</td>
+              <td>{item.lengthService} דקות</td>
               <td>{item.price || "none"}</td>
               <td>
                 <button onClick={() =>{
                   window.confirm("Are you sure you want to delete?") &&
                   onDelClick(item._id);
-                }} className='btn bagde bg-danger me-2'>Delete</button>
-                <Link to={"/admin/editService/"+item._id} className='btn bagde bg-info me-2'>Edit</Link>
+                }} className='btn bagde bg-danger me-2 text-white'>מחק</button>
+                <Link to={"/admin/editService/"+item._id} className='btn bagde bg-primary text-white me-2'>ערוך</Link>
               </td>
               </tr>
             )

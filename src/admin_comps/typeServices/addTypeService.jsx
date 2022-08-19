@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form"
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
+import '..//..//css//rtl.css';
 
 
 export default function AddTypeService() {
@@ -37,27 +38,24 @@ export default function AddTypeService() {
     }
   }
 
-
-
   return (
     <React.Fragment>
       <AdminHeader/>
-    <div className='container'>
       <AdminAuthComp/>
-      <h1>Add new Service</h1>
-      <form onSubmit={handleSubmit(onSub)} className='col-md-6 p-3 shadow'>
-       <label>Service Name:</label>
+    <div className='container d-flex justify-content-center rtlFluid'>
+      <form onSubmit={handleSubmit(onSub)} className='col-md-4 p-3 shadow mt-5'>
+      <h1 className='text-center'>הוספת שירות למערכת</h1>
+       <label>שם השירות:</label>
        <input {...register('name', {required:true, minLength:2})} type='text' className='form-control'/>
-       {errors.name && <small className='text-danger d-block'>Enter valid name (min 2chars)</small>}
+       {errors.name && <small className='text-danger d-block'>הכנס שם תקין(מינימום 2 תווים)</small>}
    
-       <label>Length Service (mins): </label>
+       <label>אורך השירות (דקות):</label>
         <input {...register('lengthService', {required: true, minLength:1})} type="number" className='form-control'/>
-        {errors.lengthService && <small className='text-danger d-block'>Enter Mins (minumum 20 mins)</small>}
+        {errors.lengthService && <small className='text-danger d-block'>הזן דקות</small>}
 
-        <label>price: </label>
-        <input {...register('price', {required: true, minLength:1})} type="number" className='form-control'/>
-        {errors.price && <small className='text-danger d-block'>Enter number</small>}
-        <button className='btn btn-success mt-3'>Add new Service</button>
+        <label>מחיר: </label>
+        <input {...register('price', {minLength:1})} type="number" className='form-control'/>
+        <button className='btn btn-success mt-3 form-control'>הוספת שירות חדש</button>
       </form>
     </div>
     </React.Fragment>

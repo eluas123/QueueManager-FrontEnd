@@ -6,6 +6,7 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import {useForm} from "react-hook-form"
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
+import '..//..//css//rtl.css';
 
 export default function EditTypeServices() {
    
@@ -50,24 +51,24 @@ export default function EditTypeServices() {
   return (
     <React.Fragment>
        <AdminHeader/>
-    <div className='container'>
-        <AdminAuthComp/>
-        <h1>Edit Service</h1>
-       <form onSubmit={handleSubmit(onSub)} className='col-md-6 p-3 shadow'>
-        <label>Service name: </label>
+       <AdminAuthComp/>
+    <div className='container d-flex justify-content-center rtlFluid'>
+       <form onSubmit={handleSubmit(onSub)} className='col-md-4 p-3 shadow mt-5'>
+       <h1 className='text-center'>עריכת שירות</h1>
+        <label>שם השירות: </label>
         <input defaultValue={serv.name}{...register('name', {required: true, minLength:2})} type="text" className='form-control'/>
-        {errors.name && <small className='text-danger d-block'>Enter valid name (min 2 chars)</small>}
+        {errors.name && <small className='text-danger d-block'>הזן שם תקין (מינימום 2 תווים)</small>}
 
-        <label>Length Service (mins): </label>
+        <label>אורך השירות: (דקות) </label>
         <input defaultValue={serv.lengthService}{...register('lengthService', {required: true, minLength:1})} type="number" className='form-control'/>
-        {errors.lengthService && <small className='text-danger d-block'>Enter Mins (minumum 20 mins)</small>}
+        {errors.lengthService && <small className='text-danger d-block'>הזן דקות</small>}
 
-        <label>price: </label>
+        <label>מחיר:</label>
         <input defaultValue={serv.price}{...register('price', {required: true, minLength:1})} type="number" className='form-control'/>
-        {errors.price && <small className='text-danger d-block'>Enter number</small>}
         <br/>
-        <button className='btn btn-warning mt-3'>Update Service</button>
-        <Link className='btn btn-danger ms-3 mt-3' to="/admin/typeServices">Back</Link>
+        <button className='btn btn-warning text-white form-control'>עדכן</button>
+        <br/>
+        <Link className='btn btn-danger text-white form-control mt-2' to="/admin/typeServices">חזור</Link>
        </form>
     </div>
     </React.Fragment>

@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
@@ -37,17 +38,16 @@ export default function UserList() {
   return (
     <React.Fragment>
         <AdminHeader/>
-    <div className='container'>
         <AdminAuthComp/>
-        <h1>List of users</h1>
+    <div className='container'>
+        <h1 className='text-center mt-5'>רשימת לקוחות</h1>
         <table className='table table-striped table-hover mt-3'>
             <thead className='bg-dark text-white'>
                 <tr>
                     <td>#</td>
-                    <td>name</td>
-                    <td>phone</td>
-                    <td>role</td>
-                    <td>delete</td>
+                    <td>שם</td>
+                    <td>פלאפון</td>
+                    <td>מחיקה</td>
                 </tr>
             </thead>
         <tbody>
@@ -57,12 +57,11 @@ export default function UserList() {
                     <td className='numbers'>{i+1}</td>
                     <td>{item.name}</td>
                     <td>{item.phone}</td>
-                    <td>{item.role}</td>
                     <td>
                         <button onClick={() =>{
                             window.confirm("Are you sure you want to delete") &&
                             onDelClick(item._id);
-                        }} className='btn btn-danger me-2'>Delete</button>
+                        }} className='btn btn-danger me-2'>מחק</button>
                     </td>
                     </tr>
                 )
