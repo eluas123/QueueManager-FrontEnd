@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useState } from 'react';
 import { AppContext } from './context/context';
 import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
 
 import About from './comps/about'
 import Home from './comps/home'
@@ -28,8 +29,7 @@ import UserAppointments from './comps/appointments/userAppointments';
 
 export default function AppRoutes() {
    const [user,setUser] = useState({name:"",role:""});
-  const showDate = new Date();
-  const displayTodaysDate = showDate.getDate()+'-'+(showDate.getMonth()+1)+'-'+showDate.getFullYear();
+  const DateNow = moment().format("DD-MM-YYYY");
 
    useEffect(()=>{
     if(localStorage[TOKEN_NAME]){
@@ -46,7 +46,7 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
     <AppContext.Provider value={{
-      displayTodaysDate,
+      DateNow,
       user,
       setUser,
       doApiUserInfo,

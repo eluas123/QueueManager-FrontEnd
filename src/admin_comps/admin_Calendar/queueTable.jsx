@@ -8,18 +8,17 @@ import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
-import FooterAdmin from '../footerAdmin';
 
 
 export default function QueueTable () {
 
-const {displayTodaysDate} = useContext(AppContext);
+const {DateNow} = useContext(AppContext);
   
   const [ar,setAr] = useState([]);
   const [show,setShow] = useState(false);
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
-  const DateSelectd = selectedValue?.format('DD-M-YYYY');
+  const DateSelectd = selectedValue?.format('DD-MM-YYYY');
 
   useEffect(() =>{
     doApi();
@@ -42,7 +41,7 @@ const {displayTodaysDate} = useContext(AppContext);
   const onSelect = (newValue) => {
     setValue(newValue);
     setSelectedValue(newValue);
-    console.log(selectedValue?.format('DD-M-YYYY'));   
+    console.log(selectedValue?.format('DD-MM-YYYY'));   
   };
 
 
@@ -52,7 +51,7 @@ const {displayTodaysDate} = useContext(AppContext);
       <AdminAuthComp/>
     <div className="container">
       <h1 className='text-center mt-5'>רשימת כול התורים שנקבעו</h1>
-      <h4>התאריך היום: {displayTodaysDate}</h4>
+      <h4>התאריך היום: {DateNow}</h4>
       <Calendar value={value} fullscreen={false} onSelect={onSelect} />
       <hr></hr>
       <h2 className='text-center'>כול התורים לתאריך: {DateSelectd}</h2>

@@ -5,6 +5,7 @@ import { Button, Calendar } from 'antd';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import moment from 'moment';
+import { extendMoment } from 'moment-range';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
@@ -15,7 +16,7 @@ import ClientAuthComp from '../clientAuthComp';
 
 export default function Appointments() {
 
-const {displayTodaysDate,user} = useContext(AppContext);
+const {DateNow,user} = useContext(AppContext);
 let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
@@ -23,13 +24,18 @@ let [show,setShow] = useState(true);
 let [nameService,setNameService] = useState({});
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
-  let DateSelect = selectedValue?.format('DD-M-YYYY');
+  let DateSelect = selectedValue?.format('DD-MM-YYYY');
 
   let params = useParams();
 
-  // const handleClick = event => {
-  //   setIsShown(current => !current);
-  // };
+  const moments = extendMoment(moment);
+
+
+  const athala = moment('2018-1-25 17:05:33');
+  const sof = moment('2018-1-28 06:10:00');
+   
+  const range = moments.range(athala, sof);
+  console.log("range",range)
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -105,7 +111,7 @@ let [nameService,setNameService] = useState({});
     <div className='container-fluid'>
     <div className='container'>
         <h1>Select the day you wanted</h1>
-        <h4>Today is: {displayTodaysDate}</h4>
+        <h4>Today is: {DateNow}</h4>
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>

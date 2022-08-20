@@ -20,7 +20,7 @@ export default function EditWorkHours() {
     const nav = useNavigate();
    const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
-  const dateSelect = selectedValue?.format('DD-M-YYYY');
+  const dateSelect = selectedValue?.format('DD-MM-YYYY');
 
   const onSelect = (newValue) => {
     setValue(newValue);
