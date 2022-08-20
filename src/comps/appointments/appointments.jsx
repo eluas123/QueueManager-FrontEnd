@@ -5,7 +5,6 @@ import { Button, Calendar } from 'antd';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import moment from 'moment';
-import { extendMoment } from 'moment-range';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
@@ -28,14 +27,18 @@ let [nameService,setNameService] = useState({});
 
   let params = useParams();
 
-  const moments = extendMoment(moment);
+  const hideButton = (array,val) =>{
+    for (let index = 0; index < array.length; index++) {
+      if(array[index] == val)
+       setShow(false);
+       break;
+    }
+     setShow(true);
+  }
+  const backButton = () =>{
+    setShow(true);
+  }
 
-
-  const athala = moment('2018-1-25 17:05:33');
-  const sof = moment('2018-1-28 06:10:00');
-   
-  const range = moments.range(athala, sof);
-  console.log("range",range)
 
   const onSelect = (newValue) => {
     setValue(newValue);
@@ -94,13 +97,12 @@ let [nameService,setNameService] = useState({});
         array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
         start = array[i];
    }
-          return array.map((val) =>{
+          return array.map((val,i) =>{
           return <Button onClick={()=>{
-            window.confirm("Are you sure you want to add this appointment") &&
-            doApiPOST(val);
-            // handleClick();
-
-          }} key={val}>{val}</Button>
+            // window.confirm("Are you sure you want to add this appointment") &&
+            // doApiPOST(val);
+            hideButton(array,val);
+          }} key={val}>{show?val:"elias"}</Button>
          })
     }
 
@@ -115,6 +117,9 @@ let [nameService,setNameService] = useState({});
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>
+        <Button onClick={()=>{
+          backButton()
+        }}>Click Here</Button>
         <div className='appointments'>
           {Appointment()}
         </div>
