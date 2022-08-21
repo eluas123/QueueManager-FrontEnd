@@ -19,25 +19,22 @@ const {DateNow,user} = useContext(AppContext);
 let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
-let [show,setShow] = useState(true);
 let [nameService,setNameService] = useState({});
+let [appointmentsArray,setAppointmentsArray] = useState([]);
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
   let DateSelect = selectedValue?.format('DD-MM-YYYY');
 
   let params = useParams();
 
-  const hideButton = (array,val) =>{
-    for (let index = 0; index < array.length; index++) {
-      if(array[index] == val)
-       setShow(false);
-       break;
-    }
-     setShow(true);
+  const hideButton = (i) =>{
+    
+   console.log(appointmentsArray)
+   Appointments([i]);
   }
-  const backButton = () =>{
-    setShow(true);
-  }
+  // const backButton = () =>{
+  //   setShow(false);
+  // }
 
 
   const onSelect = (newValue) => {
@@ -47,7 +44,13 @@ let [nameService,setNameService] = useState({});
 
   useEffect(() =>{
     doApi();
+    Appointments();
  },[DateSelect]);
+
+ useEffect(() =>{
+  
+ },[])
+
 
    const doApi = async() =>{
      let urlService = API_URL+"/typeServices/infoService/"+params.idService;
@@ -90,21 +93,25 @@ let [nameService,setNameService] = useState({});
     }
   }
 
-    const Appointment = () =>{
+    const Appointments = (indexs=[]) =>{
       let array = [];
       let dist = (ar*60)/srv;
-      for (let i = 0; i < dist-1; i++) {
+      array[0] = moment(start,'HH:mm').add(0,'minutes').format('HH:mm');
+      for (let i = 1; i < dist; i++) {
         array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
         start = array[i];
    }
-          return array.map((val,i) =>{
-          return <Button onClick={()=>{
-            // window.confirm("Are you sure you want to add this appointment") &&
-            // doApiPOST(val);
-            hideButton(array,val);
-          }} key={val}>{show?val:"elias"}</Button>
-         })
-    }
+   indexs.forEach(index=>array[index] = "")
+    setAppointmentsArray(array)
+  }
+        //   return array.map((val,i) =>{
+        //   return <Button onClick={()=>{
+        //     // window.confirm("Are you sure you want to add this appointment") &&
+        //     // doApiPOST(val) &&
+        //     hideButton(array,i);
+        //   }} key={val}>{val}</Button>
+        //  })
+    
 
   return (
     <React.Fragment>
@@ -117,11 +124,14 @@ let [nameService,setNameService] = useState({});
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>
-        <Button onClick={()=>{
-          backButton()
-        }}>Click Here</Button>
         <div className='appointments'>
-          {Appointment()}
+        {appointmentsArray.map((val,i) =>{
+          return <Button onClick={()=>{
+            // window.confirm("Are you sure you want to add this appointment") &&
+            // doApiPOST(val) &&
+            hideButton(i);
+          }} key={val}>{val}</Button>
+         })}
         </div>
     </div>
     </div>

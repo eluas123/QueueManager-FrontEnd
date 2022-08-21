@@ -57,10 +57,10 @@ export default function UserAppointments() {
                  <thead className='bg-dark text-white'>
                     <tr>
                         <th>#</th>
-                        <th>Service</th>
-                        <th>Date</th>
-                        <th>time</th>
-                        <th>Del</th>
+                        <th>סוג שירות</th>
+                        <th>תאריך</th>
+                        <th>שעה</th>
+                        <th>מחק</th>
                     </tr>
                  </thead>
                  <tbody>
@@ -73,9 +73,9 @@ export default function UserAppointments() {
                         <td>{item.time}</td>
                         <td>
                             <button onClick={()=>{
-                                window.confirm("Are you sure you want to delete") &&
+                                window.confirm("אתה בטוח שאתה רוצה למחוק?") &&
                                 onDelClick(item._id);
-                            }} className='btn btn-danger'>Del</button>
+                            }} className='btn btn-danger'>מחק</button>
                         </td>
                     </tr>
                     )
