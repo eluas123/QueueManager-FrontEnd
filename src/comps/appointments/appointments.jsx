@@ -16,7 +16,7 @@ import ClientAuthComp from '../clientAuthComp';
 export default function Appointments() {
 
 const {DateNow,user} = useContext(AppContext);
-let [ar,setAr] = useState({});
+let [distance,setDistance] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
 let [nameService,setNameService] = useState({});
@@ -28,7 +28,7 @@ let [appointmentsArray,setAppointmentsArray] = useState([]);
 
   useEffect(() =>{
     doApi();
-    // Appointments();
+    Appointments();
  },[DateSelect]);
 
  const onSelect = (newValue) => {
@@ -49,55 +49,50 @@ let [appointmentsArray,setAppointmentsArray] = useState([]);
     let respWorkHours = await doApiGet(urlWorkHours);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
+    setAppointmentsArray(respWorkHours.data.appointments)
     console.log("workhours ",respWorkHours.data.start); 
     setStart(respWorkHours.data.start);
     console.log("workhours ",respWorkHours.data.end);
     let distance = (respWorkHours.data.end.substring(0,2)) - (respWorkHours.data.start.substring(0,2));
-    setAr(distance)
+    setDistance(distance)
    }
+   console.log("distance",distance);
+   console.log("start",start);
+   console.log("srv",srv);
 
-   const doApiPOST = async(time) =>{
-    let url = API_URL+"/appointments";
-    let data = {
-      time: time,
-      userID:user.name,
-      phone:user.phone,
-      serviceID: nameService,
-      Date: DateSelect
-    }
-    try{
-    let resp = await doApiMethod(url,"POST",data);
-    console.log(resp.data);
-    if(resp.data._id){
-    toast.success("your appointment succeffuly");
-    doApi();
-    }
-  }
-    catch(err){
-      console.log(err.response);
-      toast.error("There erorr try again later");
-    }
-  }
 
-    const Appointments = (indexs=[]) =>{
-      let array = [];
-      let dist = (ar*60)/srv;
-      array[0] = moment(start,'HH:mm').format('HH:mm');
+  //  const doApiPOST = async(time) =>{
+  //   let url = API_URL+"/appointments";
+  //   let data = {
+  //     time: time,
+  //     userID:user.name,
+  //     phone:user.phone,
+  //     serviceID: nameService,
+  //     Date: DateSelect
+  //   }
+  //   try{
+  //   let resp = await doApiMethod(url,"POST",data);
+  //   console.log(resp.data);
+  //   if(resp.data._id){
+  //   toast.success("your appointment succeffuly");
+  //   doApi();
+  //   }
+  // }
+  //   catch(err){
+  //     console.log(err.response);
+  //     toast.error("There erorr try again later");
+  //   }
+  // }
+
+    const Appointments = () =>{
+      let dist = (distance*60)/srv;
+      appointmentsArray.push (moment(start,'HH:mm').format('HH:mm'))
       for (let i = 1; i < dist; i++) {
-        array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
-        start = array[i];
+        appointmentsArray.push = (moment(start,'HH:mm').add(srv,'minutes').format('HH:mm'))
+        start = appointmentsArray;
    }
-  //  indexs.forEach(index=>array[index] = "")
-  //   setAppointmentsArray(array)
+   console.log("appointsment",appointmentsArray)
   }
-        //   return array.map((val,i) =>{
-        //   return <Button onClick={()=>{
-        //     // window.confirm("Are you sure you want to add this appointment") &&
-        //     // doApiPOST(val) &&
-        //     hideButton(array,i);
-        //   }} key={val}>{val}</Button>
-        //  })
-    
 
   return (
     <React.Fragment>
