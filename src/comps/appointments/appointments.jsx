@@ -7,7 +7,7 @@ import { AppContext } from '../../context/context';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiService';
+import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import { useParams } from 'react-router-dom';
 import HeaderClient from '../headerClient';
 import ClientAuthComp from '../clientAuthComp';
@@ -24,49 +24,35 @@ let [appointmentsArray,setAppointmentsArray] = useState([]);
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
   let DateSelect = selectedValue?.format('DD-MM-YYYY');
-
   let params = useParams();
-
-  const hideButton = (i) =>{
-    
-   console.log(appointmentsArray)
-   Appointments([i]);
-  }
-  // const backButton = () =>{
-  //   setShow(false);
-  // }
-
-
-  const onSelect = (newValue) => {
-    setValue(newValue);
-    setSelectedValue(newValue);
-  };
 
   useEffect(() =>{
     doApi();
-    Appointments();
+    // Appointments();
  },[DateSelect]);
 
- useEffect(() =>{
-  
- },[])
+ const onSelect = (newValue) => {
+  setValue(newValue);
+  setSelectedValue(newValue);
+};
 
+  // const hideButton = (i) =>{
+    
+  //  console.log(appointmentsArray)
+  //  Appointments([i]);
+  // }
 
    const doApi = async() =>{
      let urlService = API_URL+"/typeServices/infoService/"+params.idService;
     let urlWorkHours = API_URL+"/workHours/workHoursByDate/"+DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
-    // console.log("service ",respService.data);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
     console.log("workhours ",respWorkHours.data.start); 
     setStart(respWorkHours.data.start);
     console.log("workhours ",respWorkHours.data.end);
-    // Number(respWorkHours.data.end);
-    // Number(respWorkHours.data.start);
     let distance = (respWorkHours.data.end.substring(0,2)) - (respWorkHours.data.start.substring(0,2));
-    // console.log("distance",distance);
     setAr(distance)
    }
 
@@ -96,13 +82,13 @@ let [appointmentsArray,setAppointmentsArray] = useState([]);
     const Appointments = (indexs=[]) =>{
       let array = [];
       let dist = (ar*60)/srv;
-      array[0] = moment(start,'HH:mm').add(0,'minutes').format('HH:mm');
+      array[0] = moment(start,'HH:mm').format('HH:mm');
       for (let i = 1; i < dist; i++) {
         array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
         start = array[i];
    }
-   indexs.forEach(index=>array[index] = "")
-    setAppointmentsArray(array)
+  //  indexs.forEach(index=>array[index] = "")
+  //   setAppointmentsArray(array)
   }
         //   return array.map((val,i) =>{
         //   return <Button onClick={()=>{
@@ -129,7 +115,7 @@ let [appointmentsArray,setAppointmentsArray] = useState([]);
           return <Button onClick={()=>{
             // window.confirm("Are you sure you want to add this appointment") &&
             // doApiPOST(val) &&
-            hideButton(i);
+            // hideButton(i);
           }} key={val}>{val}</Button>
          })}
         </div>

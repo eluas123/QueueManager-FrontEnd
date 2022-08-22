@@ -23,7 +23,7 @@ export default function ListWorkHours(props) {
     }
 
     const onDelClick = async(_idDel) =>{
-        if(_idDel == '62e10fd371793a1a0ac6b09a'){
+        if(_idDel == '63028b42a16e11c1a79ceff3'){
             toast.error("you cant delete the deafult work hours");
             return;
         }
