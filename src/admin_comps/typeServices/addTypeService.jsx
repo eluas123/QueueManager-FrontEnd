@@ -6,7 +6,6 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
 import '..//..//css//rtl.css';
-import Select from 'react-select';
 
 
 
@@ -52,7 +51,7 @@ export default function AddTypeService() {
        {errors.name && <small className='text-danger d-block'>הכנס שם תקין(מינימום 2 תווים)</small>}
    
        <label>אורך השירות (דקות):</label>
-        <select className='form-control'>
+        <select {...register('lengthService',{required:true,})} className='form-control'>
           <option>30</option>
           <option>60</option>
           <option>90</option>

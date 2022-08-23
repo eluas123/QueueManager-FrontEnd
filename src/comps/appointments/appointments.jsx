@@ -20,6 +20,7 @@ let [ar,setAr] = useState({});
 let [start,setStart] = useState({});
 let [srv,setSrv] = useState({});
 let [nameService,setNameService] = useState({});
+let [appointments,setAppointments] = useState([])
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
   let DateSelect = selectedValue?.format('DD-MM-YYYY');
@@ -42,6 +43,7 @@ let [nameService,setNameService] = useState({});
     let respWorkHours = await doApiGet(urlWorkHours);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
+    setAppointments(respWorkHours.data.appointmentsArr)
     console.log("workhours ",respWorkHours.data.start); 
     setStart(respWorkHours.data.start);
     console.log("workhours ",respWorkHours.data.end);
@@ -72,23 +74,7 @@ let [nameService,setNameService] = useState({});
     }
   }
 
-    const Appointments = () =>{
-      let array = [];
-      let dist = (ar*60)/srv;
-      array[0] = moment(start,'HH:mm').format('HH:mm');
-      for (let i = 1; i < dist; i++) {
-        array[i] = moment(start,'HH:mm').add(srv,'minutes').format('HH:mm');
-        start = array[i];
-   }
-          return array.map((val,i) =>{
-          return <Button onClick={()=>{
-            // window.confirm("Are you sure you want to add this appointment") &&
-            // doApiPOST(val) &&
-          }} key={val}>{val}</Button>
-         })
-        }
-
-        console.log("start",start);
+        console.log("appointments",appointments);
   return (
     <React.Fragment>
       <HeaderClient/>
@@ -100,9 +86,17 @@ let [nameService,setNameService] = useState({});
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>
-        {!start?<div>There is no appointments in this day</div>:
+        {start==null? <div>There is not appointments in this date</div> :
         <div className='appointments'>
-        {Appointments()}
+        {appointments.map((val,i) =>{
+          return(
+            <Button onClick={() =>{
+              // window.confirm("Are you sure?") &&
+              // doApiPOST(val)
+              console.log("check",i)
+            }} key={i}>{val}</Button>
+          )
+        })}
         </div>}
     </div>
     </div>

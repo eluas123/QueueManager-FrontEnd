@@ -19,7 +19,7 @@ export default function EditWorkHours() {
     const params = useParams();
     const nav = useNavigate();
    const [value, setValue] = useState(moment());
-  const [selectedValue, setSelectedValue] = useState(moment());
+  const [selectedValue, setSelectedValue] = useState();
   const dateSelect = selectedValue?.format('DD-MM-YYYY');
 
   const onSelect = (newValue) => {
@@ -43,8 +43,6 @@ export default function EditWorkHours() {
     }
 
     const onSub = async(_dataBody) =>{
-      let distance = (_dataBody.end.substring(0, 2) - _dataBody.start.substring(0, 2)) * 2;
-    _dataBody.appointmentsArr = [distance]
       _dataBody.date = dateSelect;
       console.log(_dataBody);
       doApiEdit(_dataBody);
@@ -83,7 +81,7 @@ export default function EditWorkHours() {
      {errors.end && <small className='text-danger d-block'>הזן שם תקין</small>}
 
      <label>תאריך</label>
-    <div className='form-control'>{dateSelect}</div>
+    <div className='form-control'>{dateSelect || wrk.date}</div>
      <button className='btn btn-success mt-3 form-control'>עדכן שעות עבודה</button>
       </form>
       <div className='ms-2'>
