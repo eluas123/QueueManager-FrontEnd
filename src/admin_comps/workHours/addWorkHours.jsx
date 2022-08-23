@@ -21,6 +21,9 @@ export default function AddWorkHours(props) {
   let {register, handleSubmit, formState: {errors}} = useForm();
 
   const onSub = (_dataBody) =>{
+    let distance = (_dataBody.end.substring(0, 2) - _dataBody.start.substring(0, 2)) * 2;
+    _dataBody.appointmentsArr = [distance]
+    console.log(_dataBody.appointmentsArr.length)
     _dataBody.date = dateSelect;
     console.log(_dataBody);
     doApiAdd(_dataBody);
@@ -66,7 +69,9 @@ export default function AddWorkHours(props) {
 
      <label>תאריך</label>
     <div className='form-control'>{dateSelect}</div>
+     <label>גודל התורים</label>
      <button className='btn btn-success mt-3 form-control'> הוסף</button>
+
     </form>
       <div className='ms-2'>
       <Calendar value={value} onSelect={onSelect} fullscreen={false} />

@@ -6,6 +6,8 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
 import '..//..//css//rtl.css';
+import Select from 'react-select';
+
 
 
 export default function AddTypeService() {
@@ -50,8 +52,12 @@ export default function AddTypeService() {
        {errors.name && <small className='text-danger d-block'>הכנס שם תקין(מינימום 2 תווים)</small>}
    
        <label>אורך השירות (דקות):</label>
-        <input {...register('lengthService', {required: true, minLength:1})} type="number" className='form-control'/>
-        {errors.lengthService && <small className='text-danger d-block'>הזן דקות</small>}
+        <select className='form-control'>
+          <option>30</option>
+          <option>60</option>
+          <option>90</option>
+          <option>120</option>
+        </select>
 
         <label>מחיר: </label>
         <input {...register('price', {minLength:1})} type="number" className='form-control'/>

@@ -88,6 +88,7 @@ let [nameService,setNameService] = useState({});
          })
         }
 
+        console.log("start",start);
   return (
     <React.Fragment>
       <HeaderClient/>
@@ -99,9 +100,10 @@ let [nameService,setNameService] = useState({});
         <Calendar value={value} fullscreen={false} onSelect={onSelect} />
         <hr/>
         <h4 className='text-center'>All Appointments for {DateSelect}</h4>
+        {!start?<div>There is no appointments in this day</div>:
         <div className='appointments'>
         {Appointments()}
-        </div>
+        </div>}
     </div>
     </div>
     </React.Fragment>

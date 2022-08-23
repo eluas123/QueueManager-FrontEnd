@@ -43,6 +43,8 @@ export default function EditWorkHours() {
     }
 
     const onSub = async(_dataBody) =>{
+      let distance = (_dataBody.end.substring(0, 2) - _dataBody.start.substring(0, 2)) * 2;
+    _dataBody.appointmentsArr = [distance]
       _dataBody.date = dateSelect;
       console.log(_dataBody);
       doApiEdit(_dataBody);
