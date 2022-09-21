@@ -4,35 +4,30 @@
     cursor: pointer;
 }
 
-Footer {
-    position: absolute;
-    bottom: 0;
-}
-
 .homePage .box {
     color: black;
 }
+
 .btnHomePage {
     width: 500px;
     margin-left: 400px;
-    
 }
 
-.btnHomePageResponsive{
-display: none;
+.btnHomePageResponsive {
+    display: none;
 }
 
-.btnHomePageDesktop{
+.btnHomePageDesktop {
     display: block;
     width: 500px;
-    margin-left: 400px;
+    margin-left: 304px;
 }
 
 @media (max-width:768px) {
-    .btnHomePageDesktop{
+    .btnHomePageDesktop {
         display: none;
     }
-    .btnHomePageResponsive{
+    .btnHomePageResponsive {
         display: block;
     }
 }

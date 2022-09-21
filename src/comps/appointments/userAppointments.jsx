@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 import { AppContext } from '../../context/context'
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService'
 import HeaderClient from '../headerClient'
-import Footer from '../footer';
 
 
 export default function UserAppointments() {
@@ -103,7 +102,6 @@ export default function UserAppointments() {
                </table>
             </div>
         </div>
-        <Footer/>
     </React.Fragment>
   )
 }

@@ -63,8 +63,8 @@ const getImg = (_img_url) => {
             <div className='p-2 border shadow h-100'>
               <div className='big-div' style={{backgroundImage:`url(${getImg(item.img_url)})`}}></div>
               <h2>{item.name}</h2>
-              <h4 className='h5'>תיאור:{item.Description}</h4>
-              <div>מחיר: {item.price} שקל</div>
+              <h5>תיאור:{item.Description}</h5>
+              <h5>מחיר: {item.price} שקל</h5>
               <button onClick={() =>{
                 window.confirm("אתה בטוח שאתה רוצה למחוק?")&&
                 onDelClick(item._id);

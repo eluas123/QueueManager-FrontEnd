@@ -32,7 +32,7 @@ export default function AdminSideBar() {
         <hr/>
         <Link className="menu-item text-white" to={"/admin/waitingList"}>  המתנה</Link>
         <hr/>
-        <Link className="menu-item text-white" to={"/admin/products"}> מוצרים</Link>
+        <Link className="menu-item text-white" to={"/admin/listProducts"}> מוצרים</Link>
         <hr/>
         <Link className="menu-item text-white" to={"/admin/graphs"}> גרפים</Link>
     </Menu>

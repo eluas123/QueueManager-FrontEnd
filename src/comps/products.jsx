@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { AppContext } from '../context/context';
 import { API_URL, doApiGet } from '../services/apiService';
-import Footer from './footer';
 import HeaderClient from './headerClient';
 
 export default function Products() {
@@ -45,15 +45,15 @@ export default function Products() {
         <div className='container'>
           <h1 className='text-center mt-5 display-4'>מוצרים באתר</h1>
           <div className='row mt-3 product'>
-  
             {ar.map((item) =>{
                 return(
-                  <div key={item._id} className='col-md-4 p-md-5 product-box '>
+                  <div key={item._id} className='col-md-4 p-2 product-box '>
                   <div className='p-2 border shadow h-100'>
                     <div className='big-div' style={{backgroundImage:`url(${getImg(item.img_url)})`}}></div>
                     <h2>{item.name}</h2>
+                    <h5>תיאור:{item.Description}</h5>
                     <h5>מחיר: {item.price} שקל</h5>
-                    <div className='fs-6'>תיאור:{item.Description}</div>
+                      <a className='btn btn-primary' target={'blank'} href={`https://api.whatsapp.com/send/?phone=972548173179&text=היי, הפריט זמין? ${item.name} קוד פריט ${item._id}&type=phone_number&app_absent=0`}>הזמנה מראש</a>
                     </div>
                     </div>
                 )
@@ -61,10 +61,7 @@ export default function Products() {
    }
    </div>
       </div>}
-    </div>
-   
-    <Footer/>
- 
+    </div> 
   </React.Fragment>
   )
 }

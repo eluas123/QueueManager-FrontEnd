@@ -1,4 +1,3 @@
-import Footer from './footer';
 import React from 'react'
 import HeaderClient from './headerClient'
 
@@ -9,7 +8,7 @@ export default function About(props) {
   return (
     <React.Fragment>
       <HeaderClient />
-      <div className='container-fluid about'> 
+      <div style={{height:550}} className='container-fluid about'> 
       <div className='container'>
        <h1 className='text-center display-4 mt-5'>אודות המספרה</h1>
        <div className='d-flex justify-content-center'>
@@ -20,7 +19,6 @@ export default function About(props) {
        </div>
       </div>
       </div>
-      <Footer/>
     </React.Fragment>
   )
 }

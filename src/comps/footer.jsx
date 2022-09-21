@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className='container-fluid footerClient sticky-bottom'>
+    <footer className='container-fluid footerClient'>
        <div className='container text-center text-white pt-3'>
         <strong>אהבת את האפליקציה? רוצה גם ? לחץ כאן</strong>
         <br/>

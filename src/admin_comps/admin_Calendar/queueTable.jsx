@@ -92,7 +92,7 @@ const {DateNow} = useContext(AppContext);
                     <td>{item.userID}</td>
                     <td>{item.serviceID}</td>
                     <td>{item.time}</td>
-                    <td><a target={"_blank"} href={`https://api.whatsapp.com/send/?phone=972${item.phone.substring(1)}&text=היי מה קורה ${item.userID}? את/ה בדרך?&type=phone_number&app_absent=0`}>{item.phone}</a></td>
+                    <td><a className='btn btn-primary' target={"_blank"} href={`https://api.whatsapp.com/send/?phone=972${item.phone.substring(1)}&text=היי מה קורה ${item.userID}? את/ה בדרך?&type=phone_number&app_absent=0`}>{item.phone}</a></td>
                     <td>
                       <button onClick={() =>{
                         window.confirm("Are you sure want to delete?")
