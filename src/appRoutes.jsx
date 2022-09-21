@@ -26,8 +26,14 @@ import { useEffect } from 'react';
 import { API_URL, doApiGet, TOKEN_NAME } from './services/apiService';
 import LogOut from './comps/userCms/logOut';
 import UserAppointments from './comps/appointments/userAppointments';
+import AdminProducts from './admin_comps/admin_products/adminProducts';
+import Products from './comps/products';
+import AdminWaitingList from './admin_comps/waitingList/adminWaitingList';
+import AdminListProducts from './admin_comps/admin_products/adminListProducts';
+import Graphs from './admin_comps/graphs/graphs';
 
 export default function AppRoutes() {
+  const [Loading,setLoading] = useState(false);
    const [user,setUser] = useState({name:"",role:""});
   const DateNow = moment().format("DD-MM-YYYY");
 
@@ -50,6 +56,8 @@ export default function AppRoutes() {
       user,
       setUser,
       doApiUserInfo,
+      Loading,
+      setLoading
       }}>
     <Routes>
     {/*Route User*/}
@@ -58,6 +66,7 @@ export default function AppRoutes() {
     <Route path="/login" element={<Login/>}/>
     <Route path="/logout" element={<LogOut/>}/>
     <Route path="/about" element={<About/>}/>
+    <Route path="/products" element={<Products/>}/>
     <Route path="/service" element={<CategoriesList/>}/>  
     {user && <Route path="/userAppointments" element={<UserAppointments/>}/>}
     <Route path="/appointments/:idService" element={<Appointments/>}/>    
@@ -68,11 +77,15 @@ export default function AppRoutes() {
     <Route path="/admin/appoitments" element={<QueueTable/>}/>
     <Route path="/admin/ListUsers" element={<UserList/>}/>
     <Route path="/admin/listServices" element={<TypeServicesList/>}/>
+    <Route path="/admin/waitingList" element={<AdminWaitingList/>}/>
     <Route path="/admin/editService/:idService" element={<EditTypeServices/>}/>
     <Route path="/admin/addService" element={<AddTypeService/>}/>
     <Route path="/admin/listWorkHours" element={<ListWorkHours/>}/>
     <Route path="/admin/addWorkHours" element={<AddWorkHours/>}/>
     <Route path="/admin/editWorkHours/:idWorkHours" element={<EditWorkHours/>}/>
+    <Route path="/admin/products" element={<AdminProducts/>}/>
+    <Route path="/admin/graphs" element={<Graphs/>}/>
+    <Route path="/admin/listProducts" element={<AdminListProducts/>}/>
     </Routes>
     {/*TOAST MESSAGE*/}
     <ToastContainer position="top-left" theme="dark"/>

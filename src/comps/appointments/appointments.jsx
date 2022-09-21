@@ -1,5 +1,4 @@
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import '../../css/appointments.css';
 import { toast } from 'react-toastify';
 import { Button, Calendar } from 'antd';
 import { useContext } from 'react';
@@ -11,16 +10,15 @@ import { API_URL, doApiGet, doApiMethod, TOKEN_NAME } from '../../services/apiSe
 import { useParams } from 'react-router-dom';
 import HeaderClient from '../headerClient';
 import ClientAuthComp from '../clientAuthComp';
+import WaitinLists from './waitingLists';
 
 
 export default function Appointments() {
 
-const {DateNow,user} = useContext(AppContext);
-let [ar,setAr] = useState({});
-let [start,setStart] = useState({});
-let [srv,setSrv] = useState({});
-let [nameService,setNameService] = useState({});
-let [appointments,setAppointments] = useState([])
+  const { DateNow, user,Loading } = useContext(AppContext);
+  let [srv, setSrv] = useState({});
+  let [nameService, setNameService] = useState({});
+  let [appointmentsArr, setAppointmentsArr] = useState([]);
   const [value, setValue] = useState(moment());
   const [selectedValue, setSelectedValue] = useState(moment());
   let DateSelect = selectedValue?.format('DD-MM-YYYY');
@@ -32,74 +30,133 @@ let [appointments,setAppointments] = useState([])
     setSelectedValue(newValue);
   };
 
-  useEffect(() =>{
+  useEffect(() => {
     doApi();
- },[DateSelect]);
+  }, [DateSelect]);
 
-   const doApi = async() =>{
-     let urlService = API_URL+"/typeServices/infoService/"+params.idService;
-    let urlWorkHours = API_URL+"/workHours/workHoursByDate/"+DateSelect;
+
+
+
+  const doApi = async () => {
+    let urlService = API_URL + "/typeServices/infoService/" + params.idService;
+    let urlWorkHours = API_URL + "/workHours/workHoursByDate/" + DateSelect;
     let respService = await doApiGet(urlService);
     let respWorkHours = await doApiGet(urlWorkHours);
+    console.log(respWorkHours)
+    if(respWorkHours.data.length == 0){
+      setAppointmentsArr([]) 
+      return;
+    }
+    setAppointmentsArr(respWorkHours.data[0].appointmentsArr)
+    // console.log("service ",respService.data);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
-    setAppointments(respWorkHours.data.appointmentsArr)
-    console.log("workhours ",respWorkHours.data.start); 
-    setStart(respWorkHours.data.start);
-    console.log("workhours ",respWorkHours.data.end);
-    let distance = (respWorkHours.data.end.substring(0,2)) - (respWorkHours.data.start.substring(0,2));
-    setAr(distance)
-   }
-
-   const doApiPOST = async(time) =>{
-    let url = API_URL+"/appointments";
+    // console.log("workhours ",respWorkHours.data[0].start); 
+  }
+console.log(appointmentsArr.length)
+  const doApiPOST = async (time, index) => {
+    let url = API_URL + "/appointments";
     let data = {
       time: time,
-      userID:user.name,
-      phone:user.phone,
+      userID: user.name,
+      phone: user.phone,
       serviceID: nameService,
-      Date: DateSelect
+      Date: DateSelect,
+      indexArray: index,
+      serviceLength: srv / 30
     }
-    try{
-    let resp = await doApiMethod(url,"POST",data);
-    console.log(resp.data);
-    if(resp.data._id){
-    toast.success("your appointment succeffuly");
-    doApi();
+    try {
+      let resp = await doApiMethod(url, "POST", data);
+      console.log(resp.data);
+      if (resp.data._id) {
+        toast.success("your appointment succeffuly");
+        doApi();
+      }
     }
-  }
-    catch(err){
+    catch (err) {
       console.log(err.response);
-      toast.error("There erorr try again later");
+      toast.error("There erorr try again laterPOST");
     }
   }
 
-        console.log("appointments",appointments);
+  const doApiEdit = async (index) => {
+    let url = API_URL + `/workHours/appointmentsArray/${DateSelect}`;
+    let newAppointmentsArray = [];
+    newAppointmentsArray = appointmentsArr;
+    newAppointmentsArray[index] = '';
+    console.log("new", newAppointmentsArray)
+    let data = {
+      appointmentsArr: newAppointmentsArray,
+    }
+    try {
+      let resp = await doApiMethod(url, "PUT", data);
+      if (resp.data.modifiedCount == 1) {
+        doApi();
+      }
+    }
+    catch (err) {
+      console.log(err.response);
+      toast.error("There error try again laterEdit");
+    }
+  }
+  let array = [];
+  for (let i = 0; i < appointmentsArr.length; i += (srv / 30)) {
+    array[i] = appointmentsArr[i];
+  }
+
+  for (let i = 0; i < appointmentsArr.length; i++) {
+    if (appointmentsArr[i] == "") {
+      if (srv / 30 == 1)
+        continue;
+      if (srv / 30 > 2) {
+        for (let j = 0; j < srv/30; j++) {
+          array[i-srv/30]="";
+          i++
+        }
+      }
+      else {
+        for (let j = 0; j < srv / 30; j++) {
+          array[i-1] = "";
+          i++
+        }
+      }
+
+    }
+  }
+
+
   return (
     <React.Fragment>
-      <HeaderClient/>
-      <ClientAuthComp/>
-    <div className='container-fluid'>
-    <div className='container'>
-        <h1>Select the day you wanted</h1>
-        <h4>Today is: {DateNow}</h4>
-        <Calendar value={value} fullscreen={false} onSelect={onSelect} />
-        <hr/>
-        <h4 className='text-center'>All Appointments for {DateSelect}</h4>
-        {start==null? <div>There is not appointments in this date</div> :
-        <div className='appointments'>
-        {appointments.map((val,i) =>{
-          return(
-            <Button onClick={() =>{
-              // window.confirm("Are you sure?") &&
-              // doApiPOST(val)
-              console.log("check",i)
-            }} key={i}>{val}</Button>
-          )
-        })}
+      <HeaderClient />
+      <ClientAuthComp />
+      <div className='container-fluid rtlFluid'>
+      {Loading ?
+         <div className="text-center">
+         <img src='https://cutewallpaper.org/21/loading-gif-transparent-background/Tag-For-Loading-Bar-Gif-Transparent-Loading-Gif-.gif'
+/>
+       </div> :
+        <div className='container'>
+          <h1 className='text-center display-5 mt-5'>צפייה בתורים</h1>
+          <h4>התאריך היום: {DateNow}</h4>
+          <strong>לחץ על תאריך לבדיקת תורים זמינים</strong>
+          <Calendar value={value} fullscreen={false} onSelect={onSelect} />
+          <hr />
+          <h4 className='text-center'>כול התורים הזמינים לתאריך: {DateSelect}</h4>
+          {appointmentsArr.length == 0? <div className='text-center mt-5 fs-3'><h2>אין תורים זמינים לתאריך זה</h2></div> :
+            <div className='appointments'>
+              {array.map((val, i) => {
+                return (
+                  <Button onClick={() => {
+                    window.confirm("Are you sure you want to add this appointment?") &&
+                      doApiPOST(val, i) &&
+                      doApiEdit(i)
+                  }} key={i}>{val}</Button>
+                )
+              })}
+            </div>}
+            <WaitinLists Date={DateSelect}/>
         </div>}
-    </div>
-    </div>
+      </div>
     </React.Fragment>
   )
 }

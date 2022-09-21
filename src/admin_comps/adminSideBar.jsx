@@ -29,6 +29,12 @@ export default function AdminSideBar() {
         <Link className="menu-item text-white" to={"/admin/listWorkHours"}>שעות עבודה</Link>
         <hr/>
         <Link className="menu-item text-white" to={"/admin/ListUsers"}> לקוחות</Link>
+        <hr/>
+        <Link className="menu-item text-white" to={"/admin/waitingList"}>  המתנה</Link>
+        <hr/>
+        <Link className="menu-item text-white" to={"/admin/products"}> מוצרים</Link>
+        <hr/>
+        <Link className="menu-item text-white" to={"/admin/graphs"}> גרפים</Link>
     </Menu>
   )
 }

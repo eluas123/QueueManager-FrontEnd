@@ -6,6 +6,7 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import { Link } from 'react-router-dom';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
+import FooterAdmin from '../footerAdmin';
 
 export default function TypeServicesList() {
 
@@ -41,7 +42,7 @@ export default function TypeServicesList() {
        <AdminHeader/>
     <div className='container'>
       <AdminAuthComp/>
-      <h2 className='text-center mt-5'>רשימת כול סוגי השירות במערכת</h2>
+      <h2 className='text-center mt-5 display-4'>רשימת כול סוגי השירות במערכת</h2>
       <Link to={"/admin/addService"} className='btn btn-primary form-control'>הוספת שירות למערכת</Link>
       <table className='table table-striped table-hover mt-3'>
         <thead className='bg-dark text-white'>
@@ -74,6 +75,7 @@ export default function TypeServicesList() {
         </tbody>
       </table>
     </div>
+    <FooterAdmin/>
     </React.Fragment>
   )
 }

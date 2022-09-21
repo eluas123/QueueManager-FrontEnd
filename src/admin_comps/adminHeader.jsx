@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import '..//css//headerFooterClient.css';
@@ -8,7 +9,9 @@ import AdminSideBar from './adminSideBar';
 export default function AdminHeader() {
 
     const {user} = useContext(AppContext);
+ useEffect(() =>{
 
+ },[user])
 
   return (
     <header className='container-fluid headerNavAdmin'>
@@ -20,6 +23,9 @@ export default function AdminHeader() {
             <li><Link to={'/admin/listServices'} className='btn text-white'>סוגי שירות</Link></li>
             <li><Link to={'/admin/listWorkHours'} className='btn text-white'>שעות עבודה </Link></li>
             <li> <Link to={'/admin/ListUsers'} className='btn text-white'>רשימת לקוחות</Link></li>
+            <li> <Link to={'/admin/waitingList'} className='btn text-white'> רשימת המתנה</Link></li>
+            <li> <Link to={'/admin/listProducts'} className='btn text-white'>מוצרים</Link></li>
+            <li> <Link to={'/admin/graphs'} className='btn text-white'>גרפים</Link></li>
         <div className='d-flex mt-4'>
           <span className='btn text-white me-1 link'>Welcome {user.name},</span>
           <Link className='btn btn-danger text-white link' to={'/logout'}>Log out</Link>

@@ -2,12 +2,14 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { Alert,Calendar } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
-import { API_URL, doApiGet } from '../../services/apiService';
+import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
+import { toast } from 'react-toastify';
+import FooterAdmin from '../footerAdmin';
 
 
 export default function QueueTable () {
@@ -44,13 +46,28 @@ const {DateNow} = useContext(AppContext);
     console.log(selectedValue?.format('DD-MM-YYYY'));   
   };
 
+  const onDelClick = async(_idDel) =>{
+    let url = API_URL+"/appointments/adminDelete/"+_idDel;
+    try{
+    let resp = await doApiMethod(url,'DELETE')
+    if(resp.data.deletedCount == 1){
+      toast.success("Deleted")
+      doApi()
+    }
+    }
+    catch(err){
+      console.log(err);
+      // toast.error("there is problem try to refresh the page")
+      toast.success("Deleted")
+    }
+  }
 
   return (
     <React.Fragment>
       <AdminHeader/>
       <AdminAuthComp/>
-    <div className="container">
-      <h1 className='text-center mt-5'>רשימת כול התורים שנקבעו</h1>
+    <div className="container rtlFluid mb-5">
+      <h1 className='text-center mt-5 display-4'>רשימת כול התורים שנקבעו</h1>
       <h4>התאריך היום: {DateNow}</h4>
       <Calendar value={value} fullscreen={false} onSelect={onSelect} />
       <hr></hr>
@@ -64,6 +81,7 @@ const {DateNow} = useContext(AppContext);
                     <td> שירות</td>
                     <td>שעה</td>
                     <td>whatsApp</td>
+                    <td>מחק</td>
                 </tr>
             </thead>
         <tbody>
@@ -75,13 +93,18 @@ const {DateNow} = useContext(AppContext);
                     <td>{item.serviceID}</td>
                     <td>{item.time}</td>
                     <td><a target={"_blank"} href={`https://api.whatsapp.com/send/?phone=972${item.phone.substring(1)}&text=היי מה קורה ${item.userID}? את/ה בדרך?&type=phone_number&app_absent=0`}>{item.phone}</a></td>
+                    <td>
+                      <button onClick={() =>{
+                        window.confirm("Are you sure want to delete?")
+                        onDelClick(item._id)
+                      }} className='btn btn-danger'>Del</button>
+                    </td>
                     </tr>
                 )
             })}
         </tbody>
         </table>}
     </div>
-    {/* <FooterAdmin/> */}
     </React.Fragment>
   )
           }

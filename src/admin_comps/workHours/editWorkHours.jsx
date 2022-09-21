@@ -11,6 +11,7 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
 import '..//..//css//rtl.css';
+import FooterAdmin from '../footerAdmin';
 
 
 export default function EditWorkHours() {
@@ -72,6 +73,7 @@ export default function EditWorkHours() {
       <h1 className='text-center mt-5'>עריכת שעות עבודה</h1>
       <div className='d-flex'>
       <form onSubmit={handleSubmit(onSub)} className='col-md-4 p-3 shadow mt-3 rtlFluid'>
+      <h4 className='text-center mt-2'>התחל להזין ימי עבודה</h4>
       <label>שעת התחלה</label>
      <input {...register('start',{required:true ,minLength:2})} type='time' defaultValue={wrk.start} className="form-control"/>
      {errors.start && <small className='text-danger d-block'>הזן זמן תקין</small>}
@@ -82,6 +84,11 @@ export default function EditWorkHours() {
 
      <label>תאריך</label>
     <div className='form-control'>{dateSelect || wrk.date}</div>
+    <label>הפסקה</label>
+    <br/>
+    <small>הפסקה של חצי שעה בחר שעה*</small>
+    <input {...register('break',{required:true, minLength:2})} type='time' defaultValue={"12:00"} className="form-control"/>
+     {errors.break && <small classsName='text-danger d-block'>הזן זמן תקין</small>}
      <button className='btn btn-success mt-3 form-control'>עדכן שעות עבודה</button>
       </form>
       <div className='ms-2'>
@@ -89,6 +96,7 @@ export default function EditWorkHours() {
     </div>
     </div>
     </div>
+    <FooterAdmin/>
     </React.Fragment>
   )
 }

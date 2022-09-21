@@ -1,4 +1,5 @@
 import React from 'react'
+import { FiLogIn } from 'react-icons/fi';
 import { useContext } from 'react';
 import {useForm} from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
@@ -43,7 +44,9 @@ export default function SignUp() {
 
   return ( 
 <div className='container-fluid signUpFluid d-md-flex justify-content-between'>
-<img className='img1' src=''/>
+<div className='text-center col-md-9 my-5 img1'>
+            <FiLogIn size={'15em'} style={{color:'rgba(0, 0, 255, 0.623)'}} />
+          </div>
   <div className='right d-flex align-items-center p-md-5 '>
     <form onSubmit={handleSubmit(onSub)} className="box col-md-6">
     <h1 className='display-5 text-dark me-2'>התחברות:</h1>
@@ -58,8 +61,10 @@ export default function SignUp() {
   </div>
   <div className='d-flex  align-items-center'>
   <div className='left text-center'>
-    <img className='img2' src=''/>
-    <h2 className='h2SignUp col-md-8 text-center text-white'>ברוכים השבים למרפאת השיניים</h2>
+  <div className='text-center col-md-9 my-5 img2'>
+            <FiLogIn size={'15em'} style={{color:'white'}} />
+          </div>
+    <h2 className='h2SignUp col-md-8 text-center text-white'>ברוכים השבים למספרה של אליאס וטימור</h2>
   </div>
   </div>
 </div>

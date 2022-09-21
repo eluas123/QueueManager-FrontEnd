@@ -1,10 +1,11 @@
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 
 .signUpFluid {
     direction: rtl;
-    min-height: 610px;
+    height: 745px;
     background: linear-gradient(to right, rgba(0, 0, 255, 0.623) 50%, white 50%);
 }
 
@@ -21,12 +22,10 @@
     display: none;
 }
 
-.img2 {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-left: 165px;
-    margin-bottom: 20px;
+@media (min-height:1920px) {
+    .signUpFluid {
+        height: 961px;
+    }
 }
 
 @media (max-width:768px) {
@@ -43,11 +42,6 @@
     }
     .img1 {
         display: block;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        margin-right: 90px;
-        margin-bottom: 50px;
     }
     .img2 {
         display: none;

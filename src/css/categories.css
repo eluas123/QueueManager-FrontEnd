@@ -1,25 +1,16 @@
+.divService{
+    background: rgba(220, 220, 220, 0.116);
+}
+
 .Service .box {
-    background: #091442;
-    min-height: 200px;
-    border: 1px solid black;
-    position: relative;
-    background-position: center;
-    background-size: cover;
+    min-height: 100px;
     transition: 800ms;
+    min-width: 300px;
     cursor: pointer;
+    
 }
 
 .Service .box:hover {
     transform: scale(0.9, 0.9);
 }
 
-.Service .box h3 {
-    width: 100%;
-    margin: 0;
-    padding: 8px;
-    text-align: center;
-    color: white;
-    display: flex;
-    font-size: 22px;
-    font-weight: 900;
-}

@@ -1,7 +1,45 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.appointments button {
+    margin: 8px;
+}
+
 .rtlFluid {
     direction: rtl;
 }
 
 .rtlFluid input {
     min-height: 50px;
+}
+
+.rtlFluid select {
+    min-height: 50px;
+}
+.product{
+    margin-bottom: 200px;
+}
+
+.product-box .big-div{
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+}
+
+.about p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+@media (max-width:768px) {
+    .waitingListText{
+      font-size:16px!important;
+    }
+    .product-box{
+        margin-top: 28px;
+    }
+    .about p{
+        font-size: 14px;
+    }
 }

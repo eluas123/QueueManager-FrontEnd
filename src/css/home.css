@@ -1,12 +1,38 @@
 .homePage .box {
-    background: gainsboro;
-    height: 100px;
-    width: 100px;
-    border: 1px solid black;
+    height: 150px;
+    width: 150px;
     cursor: pointer;
 }
 
 Footer {
     position: absolute;
     bottom: 0;
+}
+
+.homePage .box {
+    color: black;
+}
+.btnHomePage {
+    width: 500px;
+    margin-left: 400px;
+    
+}
+
+.btnHomePageResponsive{
+display: none;
+}
+
+.btnHomePageDesktop{
+    display: block;
+    width: 500px;
+    margin-left: 400px;
+}
+
+@media (max-width:768px) {
+    .btnHomePageDesktop{
+        display: none;
+    }
+    .btnHomePageResponsive{
+        display: block;
+    }
 }

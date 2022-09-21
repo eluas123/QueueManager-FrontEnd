@@ -13,7 +13,14 @@
 .footerAdmin {
     background: #000;
     min-height: 70px;
-    position: absolute;
+    position: fixed;
+    bottom: 0;
+}
+
+.footerClient{
+    background: #0E1E5B;
+    min-height: 70px;
+    position: fixed;
     bottom: 0;
 }
 

@@ -6,7 +6,7 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
 import '..//..//css//rtl.css';
-
+import FooterAdmin from '../footerAdmin';
 
 
 export default function AddTypeService() {
@@ -20,11 +20,6 @@ export default function AddTypeService() {
 
     const doApiAdd =async(_dataBody) =>{
     let url = API_URL+"/typeServices";
-    let resp2 = await doApiGet(url);
-    if(resp2.data.length > 3){
-      toast.error("you cant added more then 4 services edit/delete one");
-      return;
-    }
     try{
      let resp = await doApiMethod(url,"POST",_dataBody);
      console.log(resp.data);
@@ -51,8 +46,8 @@ export default function AddTypeService() {
        {errors.name && <small className='text-danger d-block'>הכנס שם תקין(מינימום 2 תווים)</small>}
    
        <label>אורך השירות (דקות):</label>
-        <select {...register('lengthService',{required:true,})} className='form-control'>
-          <option>30</option>
+        <select className='form-control' {...register('lengthService', {required: true, minLength:1})}  type='number'>
+        <option>30</option>
           <option>60</option>
           <option>90</option>
           <option>120</option>
@@ -63,6 +58,7 @@ export default function AddTypeService() {
         <button className='btn btn-success mt-3 form-control'>הוספת שירות חדש</button>
       </form>
     </div>
+    <FooterAdmin/>
     </React.Fragment>
   )
 }

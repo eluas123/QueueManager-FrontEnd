@@ -6,6 +6,8 @@ import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import { Link } from 'react-router-dom';
 import AdminHeader from '../adminHeader';
+import FooterAdmin from '../footerAdmin';
+import Pages from '../pages';
 
 export default function ListWorkHours(props) {
     
@@ -41,9 +43,9 @@ export default function ListWorkHours(props) {
         <AdminHeader/>
         <AdminAuthComp/>
     <div className='container'>
-     <h2 className='text-center mt-5'>רשימת עדכוני שעות עבודה </h2>
+     <h2 className='text-center mt-5 display-4'>רשימת עדכוני שעות עבודה </h2>
      <Link to={"/admin/addWorkHours"} className='btn btn-primary form-control mb-3'>עדכון שעות עבודה ותאריך</Link>
-     <small>*השורה האחרונה זו הברירת מחדל של שעות העבודה</small>
+     {/* <Pages css='btn btn-warning ms-2' perPage="5" urlCount={API_URL+"/appointments/count"} toLink="/admin/listWorkHours?page="/> */}
      <table className='table table-striped table-hover'>
         <thead className='bg-dark text-white'>
             <tr>
@@ -51,6 +53,7 @@ export default function ListWorkHours(props) {
                 <th>שעת התחלה</th>
                 <th>שעת סיום</th>
                 <th>תאריך</th>
+                <th>הפסקה</th>
                 <th>מחק/ערוך</th>
             </tr>
         </thead>
@@ -61,7 +64,8 @@ export default function ListWorkHours(props) {
                         <td className='numbers'>{i+1}</td>
                         <td>{item.start}</td>
                         <td>{item.end}</td>
-                        <td>{item.date || 'ברירת מחדל'}</td>
+                        <td>{item.date}</td>
+                        <td>{item.break}</td>
                         <td>
                             <button onClick={() =>{
                                 window.confirm("Are you sure you want to delete") &&
@@ -75,6 +79,7 @@ export default function ListWorkHours(props) {
         </tbody>
      </table>
     </div>
+    {/* <FooterAdmin/> */}
     </React.Fragment>
   )
 }

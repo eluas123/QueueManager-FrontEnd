@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
@@ -6,6 +5,7 @@ import { useState } from 'react'
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService';
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
+import FooterAdmin from '../footerAdmin';
 
 export default function UserList() {
     
@@ -40,7 +40,7 @@ export default function UserList() {
         <AdminHeader/>
         <AdminAuthComp/>
     <div className='container'>
-        <h1 className='text-center mt-5'>רשימת לקוחות</h1>
+        <h1 className='text-center mt-5 display-4'>רשימת לקוחות</h1>
         <table className='table table-striped table-hover mt-3'>
             <thead className='bg-dark text-white'>
                 <tr>

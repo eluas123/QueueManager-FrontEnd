@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeaderClient from './headerClient';
-import {BsCalendar2Day,BsWhatsapp} from 'react-icons/bs';
-import {SiWaze,SiAboutdotme} from 'react-icons/si';
-import {MdSmsFailed,MdProductionQuantityLimits} from 'react-icons/md';
+import { FaWaze } from 'react-icons/fa';
+import { SiWaze, SiAboutdotme } from 'react-icons/si';
+import { FcCalendar, FcContacts, FcReading, FcSms } from 'react-icons/fc';
+import { MdSmsFailed, MdProductionQuantityLimits } from 'react-icons/md';
 import '..//css//home.css';
 import Footer from './footer';
 
@@ -12,51 +13,71 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <HeaderClient/>
+      <HeaderClient />
       <div className='container-fluid homePage'>
-        <h1 className='text-center mt-5'>ברוכים הבאים למרפאת השיניים</h1>
-        <div className='container'>
-          <div className='row d-flex justify-content-center'>
-        <div className='col-md-6 d-flex justify-content-evenly'>
-          <a target={"_blank"} href='https://api.whatsapp.com/send/?phone=972548173179&text=Elias+agever&type=phone_number&app_absent=0'>
-          <div className='box d-flex align-items-center justify-content-center'>
-          <BsWhatsapp size={'3em'}/>
+      <div className='container'>
+        <h1 className='text-center mt-5 display-4'>ברוכים הבאים למספרה של טימור ואליאס</h1>
+        <Link className='btn btn-primary btnHomePageDesktop mt-5' to={"/login"}>בואו נתחיל התחבר/הרשם</Link>
+        <Link className='btn btn-primary form-control btnHomePageResponsive mt-5' to={"/login"}>בואו נתחיל התחבר/הרשם</Link>
+          <div className='row d-flex justify-content-center mt-4'>
+            <div className='col-md-6 d-flex justify-content-evenly'>
+              <a target={"_blank"} href='https://api.whatsapp.com/send/?phone=972548173179&text=Elias+agever&type=phone_number&app_absent=0'>
+                <div className='box row text-center align-items-center justify-content-center'>
+                  <FcSms size={'3em'} />
+                  <p className='fs-5'>
+                    ווצאפ
+                  </p>
+                </div>
+              </a>
+              <Link to={"/service"}>
+                <div className='box row text-center align-items-center justify-content-center'>
+                  <FcCalendar size={'3em'} />
+                  <p className='fs-5'>
+                    קביעת תור 
+                  </p>
+                </div>
+              </Link>
+              <Link to={"/waze"}>
+                <div className='box row text-center align-items-center justify-content-center'>
+                  <FaWaze size={'3em'} />
+                  <p className='fs-5'>
+                      וויז     
+                  </p>
+                </div>
+              </Link>
+            </div>
           </div>
-          </a>
-        <Link to={"/service"}>
-          <div className='box d-flex align-items-center justify-content-center'>
-          <BsCalendar2Day size={'3em'}/>
+          <div className='row d-flex justify-content-center mt-3'>
+            <div className='col-md-6 d-flex justify-content-evenly'>
+              <Link to={"/about"}>
+                <div className='box row text-center align-items-center justify-content-center'>
+                  <FcReading size={'3em'} />
+                  <p className='fs-5'>
+                    אודות 
+                  </p>
+                </div>
+              </Link>
+              <Link to={"/userAppointments"}>
+                <div className='box row text-center align-items-center justify-content-center'>
+                  <FcContacts size={'3em'} />
+                  <p className='fs-5'>
+                    התורים שלי
+                  </p>
+                </div>
+              </Link>
+              <Link to={"/products"}>
+                <div className='box row text-center align-items-center justify-content-center'>
+                  <MdProductionQuantityLimits size={'3em'} style={{color:'blue'}}/>
+                  <p className='fs-5'>
+                    מוצרים 
+                  </p>
+                </div>
+              </Link>
+            </div>
           </div>
-        </Link>
-        <Link to={"/waze"}>
-          <div className='box d-flex align-items-center justify-content-center'>
-          <SiWaze size={'3em'}/>
-          </div>
-        </Link>
-        </div>
-        </div>
-        <div className='row d-flex justify-content-center mt-5'>
-        <div className='col-md-6 d-flex justify-content-evenly'>
-        <Link to={"/about"}>
-          <div className='box d-flex align-items-center justify-content-center'>
-          <SiAboutdotme size={'3em'}/>
-          </div>
-        </Link>
-        <Link to={"/userAppointments"}>
-          <div className='box d-flex align-items-center justify-content-center'>
-          <MdSmsFailed size={'3em'}/>
-          </div>
-        </Link>
-        <Link to={"/prodcuts"}>
-          <div className='box d-flex align-items-center justify-content-center'>
-          <MdProductionQuantityLimits size={'3em'}/>
-          </div>
-        </Link>
-        </div>
-        </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   )
 }

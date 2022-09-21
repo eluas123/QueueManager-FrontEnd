@@ -1,8 +1,11 @@
 import React from 'react'
+import { FaUserPlus } from 'react-icons/fa';
 import {useForm} from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { API_URL, doApiMethod } from '../../services/apiService';
+import '..//..//css/login.css';
+
 
 export default function SignUp() {
 
@@ -29,7 +32,7 @@ export default function SignUp() {
         }
     }
     catch(err){
-        ////respond axios error
+        //respond axios error
         console.log(err.response);
         if(err.response.data.code === 11000){
             toast.error("phone already in system, try again login");
@@ -43,7 +46,9 @@ export default function SignUp() {
 
   return (
     <div className='container-fluid signUpFluid d-md-flex justify-content-between'>
-    <img className='img1' src=''/>
+    <div className='text-center col-md-9 my-5 img1'>
+            <FaUserPlus size={'15em'} style={{color:'rgba(0, 0, 255, 0.623)'}} />
+          </div>
       <div className='right d-flex align-items-center p-md-5 '>
       <form onSubmit={handleSubmit(onSub)} className="box bg-bg-white">
           <h1 className='display-5 text-dark me-2 font-italic'>הרשמה:</h1>
@@ -66,8 +71,10 @@ export default function SignUp() {
       </div>
       <div className='d-flex  align-items-center'>
       <div className='left text-center'>
-        <img className='img2' src=''/>
-        <h2 className='h2SignUp col-md-8 text-center text-white'>ברוכים השבים למרפאת השיניים</h2>
+      <div className='text-center col-md-8 my-5 img2'>
+            <FaUserPlus size={'15em'} style={{color:'white'}} />
+          </div>
+        <h2 className='h2SignUp col-md-8 text-center text-white'>ברוכים הבאים למספרה של אליאס וטימור</h2>
       </div>
       </div>
     </div>

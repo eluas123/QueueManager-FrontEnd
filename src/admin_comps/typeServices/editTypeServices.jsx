@@ -7,6 +7,7 @@ import {useForm} from "react-hook-form"
 import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
 import '..//..//css//rtl.css';
+import FooterAdmin from '../footerAdmin';
 
 export default function EditTypeServices() {
    
@@ -60,8 +61,12 @@ export default function EditTypeServices() {
         {errors.name && <small className='text-danger d-block'>הזן שם תקין (מינימום 2 תווים)</small>}
 
         <label>אורך השירות: (דקות) </label>
-        <input defaultValue={serv.lengthService}{...register('lengthService', {required: true, minLength:1})} type="number" className='form-control'/>
-        {errors.lengthService && <small className='text-danger d-block'>הזן דקות</small>}
+        <select className='form-control' {...register('lengthService', {required: true, minLength:1})}  type='number'>
+          <option>30</option>
+          <option>60</option>
+          <option>90</option>
+          <option>120</option>
+        </select>
 
         <label>מחיר:</label>
         <input defaultValue={serv.price}{...register('price', {required: true, minLength:1})} type="number" className='form-control'/>
@@ -71,6 +76,7 @@ export default function EditTypeServices() {
         <Link className='btn btn-danger text-white form-control mt-2' to="/admin/typeServices">חזור</Link>
        </form>
     </div>
+    <FooterAdmin/>
     </React.Fragment>
   )
 }

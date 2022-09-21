@@ -6,29 +6,23 @@ import { useEffect } from 'react'
 import { AppContext } from '../../context/context'
 import { API_URL, doApiGet, doApiMethod } from '../../services/apiService'
 import HeaderClient from '../headerClient'
+import Footer from '../footer';
+
 
 export default function UserAppointments() {
 
     const {user} = useContext(AppContext)
     const [ar,setAr] = useState([]);
-    const [show,setShow] = useState(true);
-   
-    const hide = () =>{
-        setShow(true);
-    }
 
     useEffect(()=>{
      doApi();
-    },[])
+    },[user])
 
     const doApi = async()=>{
         let url = API_URL+`/appointments/userAppointments/${user.phone}`;
         let resp = await doApiGet(url);
-        console.log(resp.data);
+        // console.log(resp.data);
         setAr(resp.data);
-        if(resp.data.length == 0){
-            toast.info("There is not appointments")
-        }
     }
 
     const onDelClick = async(_idDel) =>{
@@ -42,17 +36,41 @@ export default function UserAppointments() {
         }
         catch(err){
           console.log(err);
-          toast.error("there is problem try refresh the page");
+          // toast.error("there is problem try refresh the page");
+          toast.success("Deleted")
         }
       }
-
+     
+      const doApiEdit = async(date,time,index) =>{
+        let urlPUT = API_URL+`/workHours/appointmentsArray/${date}`;
+        let urlGET = API_URL+`/workHours/appointmentsArray/${date}`;
+        let respGET = await doApiGet(urlGET);
+        console.log("elias",respGET.data.appointmentsArr)
+       let newAppointmentsArray = [];
+       newAppointmentsArray = respGET.data.appointmentsArr;
+       newAppointmentsArray[index] = time;
+       console.log("newArray",newAppointmentsArray)
+        let data = {
+          appointmentsArr:newAppointmentsArray,
+        }
+        try{
+          let resp = await doApiMethod(urlPUT,"PUT",data);
+          if(resp.data.modifiedCount == 1){
+            doApi();
+          }
+        } 
+        catch(err){
+          console.log(err.response);
+          toast.error("There error try again later");
+        }
+      }
 
   return (
     <React.Fragment>
         <HeaderClient/>
         <div className='container-fluid'>
             <div className='container'>
-               <h4 className='text-center'>Your Appointments List</h4>
+               <h4 className='text-center display-4 mt-5'>התורים שלי</h4>
                <table className='table table-striped table-hover'>
                  <thead className='bg-dark text-white'>
                     <tr>
@@ -74,7 +92,8 @@ export default function UserAppointments() {
                         <td>
                             <button onClick={()=>{
                                 window.confirm("אתה בטוח שאתה רוצה למחוק?") &&
-                                onDelClick(item._id);
+                                doApiEdit(item.Date,item.time,item.indexArray)&&
+                                onDelClick(item._id)
                             }} className='btn btn-danger'>מחק</button>
                         </td>
                     </tr>
@@ -84,6 +103,7 @@ export default function UserAppointments() {
                </table>
             </div>
         </div>
+        <Footer/>
     </React.Fragment>
   )
 }

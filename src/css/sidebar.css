@@ -27,6 +27,7 @@
 /* Position and sizing of clickable cross button */
 
 .bm-cross-button {
+    display: none;
     height: 24px;
     width: 24px;
 }
@@ -48,6 +49,7 @@
     position: fixed;
     height: 100%;
     display: none;
+    left: 0;
 }
 
 
