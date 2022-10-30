@@ -104,25 +104,25 @@ console.log(appointmentsArr.length)
     array[i] = appointmentsArr[i];
   }
 
-  for (let i = 0; i < appointmentsArr.length; i++) {
-    if (appointmentsArr[i] == "") {
-      if (srv / 30 == 1)
-        continue;
-      if (srv / 30 > 2) {
-        for (let j = 0; j < srv/30; j++) {
-          array[i-srv/30]="";
-          i++
-        }
-      }
-      else {
-        for (let j = 0; j < srv / 30; j++) {
-          array[i-1] = "";
-          i++
-        }
-      }
+  // for (let i = 0; i < appointmentsArr.length; i++) {
+  //   if (appointmentsArr[i] == "") {
+  //     if (srv / 30 == 1)
+  //       continue;
+  //     if (srv / 30 > 2) {
+  //       for (let j = 0; j < srv/30; j++) {
+  //         array[i-srv/30]="";
+  //         i++
+  //       }
+  //     }
+  //     else {
+  //       for (let j = 0; j < srv / 30; j++) {
+  //         array[i-1] = "";
+  //         i++
+  //       }
+  //     }
 
-    }
-  }
+  //   }
+  // }
 
 
   return (
