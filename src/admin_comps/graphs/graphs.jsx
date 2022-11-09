@@ -5,11 +5,14 @@ import AdminAuthComp from '../adminAuthComp';
 import AdminHeader from '../adminHeader';
 import FooterAdmin from '../footerAdmin';
 import CanvasJSReact from './canvasjs.react';
+import moment from 'moment';
+
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function Graphs() {
 
     const [count,setCount] = useState([]);
+    const getYear = moment().format('YYYY');
 
     useEffect(() => {
         doApi();
@@ -42,7 +45,7 @@ export default function Graphs() {
         exportEnabled: true,
         theme: "light2", //"light1", "dark1", "dark2"
         title:{
-            text: "תורים שנקבעו לשנת 2022"
+            text: `תורים שנקבעו לשנת ${getYear}`
         },
         axisY: {
             includeZero: true,

@@ -35,8 +35,6 @@ export default function Appointments() {
   }, [DateSelect]);
 
 
-
-
   const doApi = async () => {
     let urlService = API_URL + "/typeServices/infoService/" + params.idService;
     let urlWorkHours = API_URL + "/workHours/workHoursByDate/" + DateSelect;
@@ -48,12 +46,10 @@ export default function Appointments() {
       return;
     }
     setAppointmentsArr(respWorkHours.data[0].appointmentsArr)
-    // console.log("service ",respService.data);
     setSrv(respService.data.lengthService);
     setNameService(respService.data.name);
-    // console.log("workhours ",respWorkHours.data[0].start); 
   }
-console.log(appointmentsArr.length)
+
   const doApiPOST = async (time, index) => {
     let url = API_URL + "/appointments";
     let data = {
@@ -79,50 +75,25 @@ console.log(appointmentsArr.length)
     }
   }
 
-  const doApiEdit = async (index) => {
-    let url = API_URL + `/workHours/appointmentsArray/${DateSelect}`;
-    let newAppointmentsArray = [];
-    newAppointmentsArray = appointmentsArr;
-    newAppointmentsArray[index] = '';
-    console.log("new", newAppointmentsArray)
-    let data = {
-      appointmentsArr: newAppointmentsArray,
-    }
-    try {
-      let resp = await doApiMethod(url, "PUT", data);
-      if (resp.data.modifiedCount == 1) {
-        doApi();
-      }
-    }
-    catch (err) {
-      console.log(err.response);
-      toast.error("There error try again laterEdit");
-    }
-  }
   let array = [];
   for (let i = 0; i < appointmentsArr.length; i += (srv / 30)) {
     array[i] = appointmentsArr[i];
   }
 
-  // for (let i = 0; i < appointmentsArr.length; i++) {
-  //   if (appointmentsArr[i] == "") {
-  //     if (srv / 30 == 1)
-  //       continue;
-  //     if (srv / 30 > 2) {
-  //       for (let j = 0; j < srv/30; j++) {
-  //         array[i-srv/30]="";
-  //         i++
-  //       }
-  //     }
-  //     else {
-  //       for (let j = 0; j < srv / 30; j++) {
-  //         array[i-1] = "";
-  //         i++
-  //       }
-  //     }
+  const doApiEdit = async (time) =>{
+    let url = API_URL + `/workHours/newAppointmentsArray/${DateSelect}/${srv}/${time}`;
+    try{
+      let resp = await doApiMethod(url, "PUT");
+      if(resp.data.modifiedCount == 1){
+        doApi();
+      }
+    }
+    catch(err){
+      console.log(err.response);
+      toast.error("There is error try again later")
+    }
+  }
 
-  //   }
-  // }
 
 
   return (
@@ -148,8 +119,8 @@ console.log(appointmentsArr.length)
                 return (
                   <Button onClick={() => {
                     window.confirm("Are you sure you want to add this appointment?") &&
-                      doApiPOST(val, i) &&
-                      doApiEdit(i)
+                      doApiPOST(val, i)&&
+                      doApiEdit(val)
                   }} key={i}>{val}</Button>
                 )
               })}

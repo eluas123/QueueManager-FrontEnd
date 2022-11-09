@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/context';
 import { API_URL, doApiGet } from '../services/apiService';
 import HeaderClient from './headerClient';
@@ -10,6 +10,7 @@ export default function Products() {
 
     const[ar,setAr] = useState([]);
     const {Loading,setLoading} = useContext(AppContext)
+    const nav = useNavigate();
 
     useEffect(() =>{
      doApi();
@@ -49,7 +50,9 @@ export default function Products() {
                 return(
                   <div key={item._id} className='col-md-4 p-2 product-box '>
                   <div className='p-2 border shadow h-100'>
+                  <a target={"_blank"} href={item.img_url}>
                     <div className='big-div' style={{backgroundImage:`url(${getImg(item.img_url)})`}}></div>
+                    </a>
                     <h2>{item.name}</h2>
                     <h5>תיאור:{item.Description}</h5>
                     <h5>מחיר: {item.price} שקל</h5>
